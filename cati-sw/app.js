@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -29,6 +28,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/mono', routes.index2);
 app.get('/users', user.list);
 
 app.use(function(req, res, next) {
