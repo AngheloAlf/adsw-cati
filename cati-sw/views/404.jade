@@ -1,1 +1,37 @@
-include 404.html
+//include 404.html
+
+doctype html
+html
+    head
+        meta(charset='UTF-8')
+        title #{title}
+        script.
+            function easter_eggColor(){
+                document.getElementById("easter_egg").style.backgroundColor = "gainsboro";
+                document.getElementById("easter_egg").style.backgroundImage = "";
+                document.getElementById("easter_egg2").style.opacity = "1.0";
+                document.getElementById("easter_egg3").style.opacity = "1.0";
+                document.getElementById("easter_egg4").style.opacity = "1.0";
+                document.getElementById("easter_egg5").style.opacity = "1.0";
+            }
+            function easter_eggImage(){
+                document.getElementById("easter_egg").style.backgroundImage = "url('static/konga.gif')";
+                document.getElementById("easter_egg").style.backgroundSize = "70px 70px";
+                document.getElementById("easter_egg2").style.opacity = "0.6";
+                document.getElementById("easter_egg3").style.opacity = "0.7";
+                document.getElementById("easter_egg4").style.opacity = "0.7";
+                document.getElementById("easter_egg5").style.opacity = "0.7";
+            }
+    body(style='background-color:gainsboro')
+        #easter_egg.panel-body(onmouseout='easter_eggColor()', onmouseover='easter_eggImage()')
+            .text-center(style='padding-top:10px')
+                br
+                #easter_egg2.panel.w3-topnav.w3-blue
+                    .panel-heading
+                        h1  Error 404
+                br
+                h2#easter_egg3  No se ha encontrado la pagina que estabas buscando.
+                h3#easter_egg4  Presiona aqui para volver a la pagina principal.
+                br
+                form#easter_egg5(action='..', method='post')
+                    button.btn.btn-primary.text-right(type='submit') Volver

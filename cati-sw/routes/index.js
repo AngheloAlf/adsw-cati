@@ -3,9 +3,9 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'CATI' });
 };
 
-exports.index2 = function(req, res){
-  res.render('index2', { title: 'Express' });
+exports.login = function(req, res){
+  res.render('login', { title: 'CATI - Login' });
 };

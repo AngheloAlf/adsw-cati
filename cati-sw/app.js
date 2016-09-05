@@ -28,13 +28,13 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
-app.get('/login', routes.index2);
+app.get('/login', routes.login);
 app.get('/users', user.list);
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
-    res.render('404', { title: 'Express' });
+    res.render('404', { title: 'CATI - 404 ERROR' });
     //res.render();
     //next(err);
 });
