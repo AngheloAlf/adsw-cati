@@ -8,7 +8,6 @@
   "dependencies": {
     "express": "^3.5.2",
     "jade": "*",
-    "mysql": "^2.11.1",
-    "semantic-ui": "^2.2.4"
+    "mysql": "^2.11.1"
   }
 }

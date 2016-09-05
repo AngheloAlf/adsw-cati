@@ -1,24 +1,24 @@
 extends layout
 
 block content
-  .ui.middle.aligned.center.aligned.grid
-    .column
+  br
+  br
+  br
+  .ui.one.column.center.aligned.page.grid
+    .column.eight.wide
       h2.ui.teal.image.header
-        img.image(src='assets/images/logo.png')
+        img.image(src='static/cati.png')
         .content
-          | Log-in to your account
+          | Software CATI - Ingreso
       form.ui.large.form
         .ui.stacked.segment
           .field
             .ui.left.icon.input
               i.user.icon
-              input(name='email', placeholder='E-mail address', type='text')
+              input(name='rut', placeholder='12345678-9', type='text')
           .field
             .ui.left.icon.input
               i.lock.icon
-              input(name='password', placeholder='Password', type='password')
-          .ui.fluid.large.teal.submit.button Login
+              input(name='password', placeholder='Clave', type='password')
+          .ui.fluid.large.teal.submit.button Entrar
         .ui.error.message
-      .ui.message
-        | New to us?
-        a(href='#') Sign Up
