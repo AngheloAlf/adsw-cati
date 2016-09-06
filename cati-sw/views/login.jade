@@ -10,7 +10,7 @@ block content
         img.image(src='static/cati.png')
         .content
           | Software CATI - Ingreso
-      form.ui.large.form
+      form.ui.large.form(action="/users", method="POST")
         .ui.stacked.segment
           .field
             .ui.left.icon.input
@@ -20,5 +20,5 @@ block content
             .ui.left.icon.input
               i.lock.icon
               input(name='password', placeholder='Clave', type='password')
-          .ui.fluid.large.teal.submit.button Entrar
+          button.ui.fluid.large.teal.submit.button Entrar
         .ui.error.message
