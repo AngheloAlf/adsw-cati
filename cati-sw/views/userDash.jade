@@ -1,0 +1,13 @@
+//
+   Created by Anghelo on 08-09-2016.
+    TODO: everything :c
+
+extends layout
+
+block content
+    br
+    p Bienvenido #{nombre}
+    br
+    br
+    form(action='/', method='POST')
+        button(name='submitButton', value='log_out') Cerrar sesión

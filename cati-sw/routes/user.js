@@ -1,13 +1,12 @@
 
 //users interface
 /** TODO:
- *  -make a log-out botton
  *  -make a jade page for users
  *  -etc
  * **/
 exports.list = function(req, res){
-    if(req.session.userRut){ //If user is connected, is displayed a messaje
-        res.send("Bienvenido " + req.session.name + "<br><br><form action='/' method='POST'><button name='submitButton' value='log_out'>Cerrar sesión</button></form>");
+    if(req.session.userRut && req.session.name){ //If user is connected, is displayed a messaje
+        res.render('userDash', { title: 'CATI', nombre: req.session.name });
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
@@ -17,6 +16,7 @@ exports.list = function(req, res){
 // **connecting**
 /** TODO:
  * -regex
+ * -Discriminate between user or admin
  * -etc
  * **/
 exports.log_in = function(req, res){
@@ -30,22 +30,26 @@ exports.log_in = function(req, res){
         });
 
         connection.connect();
-        connection.query("SELECT name FROM user WHERE rut='"+ req.body.rut +"' AND pass='"+req.body.password+"'", function(err, rows, fields){
+
+        var sql = "SELECT name FROM user WHERE rut='"+ req.body.rut +"' AND pass='"+req.body.password+"'";
+        connection.query(sql, function(err, rows,){ // fields){
              if(err){
                 throw err;
             }
             //console.log('The solution is: ', rows[0]);
             if(rows[0] === undefined){
-                res.send("No se ha encontrado el usuario. <br><br> <a href='/login'>Voler al login</a> :c");
+                req.session.accountNotFound = 1;
             }
             else{
                 req.session.userRut = req.body.rut;
                 req.session.name = rows[0].name;
-                res.redirect('/users');
             }
+
+            res.redirect('/users');
         });
 
         connection.end();
+
     }
     else{ //else, redirects to login
         res.redirect('/login');
