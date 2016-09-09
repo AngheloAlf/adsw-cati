@@ -32,7 +32,7 @@ exports.log_in = function(req, res){
         connection.connect();
 
         var sql = "SELECT name FROM user WHERE rut='"+ req.body.rut +"' AND pass='"+req.body.password+"'";
-        connection.query(sql, function(err, rows,){ // fields){
+        connection.query(sql, function(err, rows){ //, fields){
              if(err){
                 throw err;
             }
