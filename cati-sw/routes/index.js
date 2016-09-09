@@ -6,10 +6,28 @@ exports.index = function(req, res){
 
 //Log-in interface
 exports.login = function(req, res){
-    if(req.session.userName){ //If user has logged in, this redirect to the users page
+    if(req.session.userRut){ //If user has logged in, this redirect to the users page
         res.redirect('/users');
     }
     else{ //else, redirects to the log-in interface
         res.render('login', {title: 'CATI - Login'});
     }
+};
+
+//
+exports.log_out = function(req, res){
+    /*if(req.session.userRut){ //If user has logged in, this redirect to the users page
+        res.redirect('/users');
+    }
+    else{ //else, redirects to the log-in interface
+        res.render('login', {title: 'CATI - Login'});
+    }*/
+    if(req.body.submitButton == 'log_out'){
+        req.session.destroy();
+    }
+    else{
+        console.log("error");
+        console.log(req.body.submitButton);
+    }
+    res.redirect('/');
 };

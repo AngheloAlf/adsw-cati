@@ -70,6 +70,7 @@ app.get('/login', routes.login);
 app.get('/users', user.list);
 
 app.post('/users', user.log_in);
+app.post('/', routes.log_out)
 
 // 404 error handler
 app.use(function(req, res){
