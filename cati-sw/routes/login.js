@@ -4,7 +4,7 @@
 
 //Log-in interface
 exports.interface = function(req, res){
-    if(req.session.userRut){ //If user has logged in, this redirect to the users page
+    if(req.session.userData){ //If user has logged in, this redirect to the users page
         res.redirect('/users');
     }
     else{ //else, redirects to the log-in interface
@@ -39,21 +39,33 @@ exports.connect = function(req, res){
             var User = require('../models/user').User;
             var user = new User();
 
-            user.find('all', {
-                fields: ["name"],
-                where: "rut='" + rut + "' AND pass='" + pass + "'"
-            }, function (err, rows) {
-                if (err) {
+            var where = "rut='" + rut + "' AND pass='" + pass + "'";
+            user.find('all', {fields: ["name"], where: where}, function (err, rows) {
+                if(err){
                     throw err;
                 }
-                if (rows[0] === undefined) {
-                    req.session.accountNotFound = 1;
+                if(rows[0] === undefined){ //User and pass conbination not found on user db
+                    var Admin = require('../models/admin').Admin;
+                    var admin = new Admin;
+
+                    admin.find('all', {fields: ["name"], where: where}, function(err, rows){
+                        if(err){
+                            throw err;
+                        }
+                        if(rows[0] === undefined){ //User and pass conbination not found on admin db
+                            req.session.accountNotFound = 1;
+                            res.redirect("/login");
+                        }
+                        else{
+                            req.session.userData = {userRut: rut, userName: rows[0].name, admin: 1};
+                            res.redirect('/admin');
+                        }
+                    });
                 }
-                else {
-                    req.session.userRut = rut;
-                    req.session.name = rows[0].name;
+                else{
+                    req.session.userData = {userRut: rut, userName: rows[0].name, admin: 0};
+                    res.redirect('/users');
                 }
-                res.redirect('/users');
             });
         }
         else{ //Else, display an error in screen
@@ -65,4 +77,3 @@ exports.connect = function(req, res){
         res.redirect('/login');
     }
 };
-

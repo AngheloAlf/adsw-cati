@@ -5,8 +5,8 @@
  *  -etc
  * **/
 exports.interface = function(req, res){
-    if(req.session.userRut && req.session.name){ //If user is connected, is displayed a messaje
-        res.render('userDash', { title: 'CATI', nombre: req.session.name });
+    if(req.session.userData){ //If user is connected
+        res.render('userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
     }
     else{//else, redirects to the login interface
         res.redirect('/login');

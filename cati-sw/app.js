@@ -6,6 +6,7 @@ var express = require('express');
 var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
+var admin = require('./routes/admin');
 
 var http = require('http');
 var path = require('path');
@@ -73,6 +74,8 @@ app.get('/login', login.interface);
 app.post('/login', login.connect);
 
 app.get('/users', user.interface);
+
+app.get('/admin', admin.interface);
 
 // 404 error handler
 app.use(function(req, res){
