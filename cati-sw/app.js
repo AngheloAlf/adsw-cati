@@ -3,8 +3,9 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
+var index = require('./routes/index');
 var user = require('./routes/user');
+var login = require('./routes/login');
 var http = require('http');
 var path = require('path');
 
@@ -26,6 +27,7 @@ app.use(bodyParser());
 
 
 /* testeo session */
+/*
 app.get('/sessionTest', function(req, res){
     var html = '<form action="" method="post">' +
         'Your name: <input type="text" name="userName"><br>' +
@@ -41,6 +43,7 @@ app.post('/sessionTest', function(req, res){
     req.session.userName = req.body.userName;
     res.redirect('/sessionTest');
 });
+*/
 //fin testeo
 
 
@@ -58,19 +61,19 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/login', routes.login);
-app.get('/users', user.list);
+app.get('/', index.index);
+app.post('/', index.log_out);
 
-app.post('/users', user.log_in);
-app.post('/', routes.log_out)
+app.get('/login', login.interface);
+app.post('/login', login.connect);
+
+app.get('/users', user.interface);
+
 
 // 404 error handler
 app.use(function(req, res){
