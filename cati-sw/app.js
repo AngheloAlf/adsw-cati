@@ -24,8 +24,6 @@ app.use(expressSession({secret:'somesecrettokenhere'}));
 
 app.use(bodyParser());
 
-
-
 /* testeo session */
 /*
 app.get('/sessionTest', function(req, res){
@@ -52,7 +50,7 @@ app.post('/sessionTest', function(req, res){
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-app.use(express.favicon());
+//app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
@@ -60,6 +58,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.favicon(path.join(__dirname, 'public','static','favicon.ico')));
 
 // development only
 if ('development' == app.get('env')) {
@@ -73,7 +72,6 @@ app.get('/login', login.interface);
 app.post('/login', login.connect);
 
 app.get('/users', user.interface);
-
 
 // 404 error handler
 app.use(function(req, res){
