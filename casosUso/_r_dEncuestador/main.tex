@@ -23,16 +23,43 @@
 
 	\subsection{Primario}
 	
+	\begin{itemize}
+		\item Administrador
+	\end{itemize}
+	
 	\subsection{Secundarios}
 	
 	\subsection{Off Stage}
+	
+	\begin{itemize}
+		\item Encuestador
+	\end{itemize}
 
 \section{Precondiciones}
+
+\begin{itemize}
+	\item Encuestador debe estar registrado en el sistema.
+\end{itemize}
 
 \section{Postcondiciones}
 
 \section{Curso Normal}
 
+\begin{easylist}
+	& Administrador selecciona ver Encuestadores.
+	& Administrador selecciona Encuestador en particular.
+	& Sistema expone datos registrados y opciones del Encuestador.
+	& Administrador vuelve al menú al finalizar.
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=4)
+	&& Administrador desea eliminar Encuestador.
+	&&& Administrador presiona ``Eliminar encuestador".
+	&&& Sistema solicita clave de Administrador.
+	&&& Administrador ingresa clave.
+\end{easylist}
 
 \end{document}
