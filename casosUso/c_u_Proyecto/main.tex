@@ -23,16 +23,51 @@
 
 	\subsection{Primario}
 	
+	\begin{itemize}
+		\item Administrador.
+	\end{itemize}
+	
 	\subsection{Secundarios}
 	
+	\begin{itemize}
+		\item Sistema de Encuesta.
+	\end{itemize}		
+	
 	\subsection{Off Stage}
+	
+	\begin{itemize}
+		\item Cliente.
+	\end{itemize}
 
 \section{Precondiciones}
 
+\begin{itemize}
+	\item Administrador ya ha recibido por parte del Cliente la información del proyecto (principalmente base de datos y encuesta).
+\end{itemize}
+
 \section{Postcondiciones}
+
+\begin{itemize}
+	\item Proyecto está iniciado y listo para comenzar su ejecución.
+\end{itemize}
 
 \section{Curso Normal}
 
+\begin{easylist}
+	& Administrador selecciona ``Crear proyecto".
+	& Administrador ingresa datos básicos del proyecto (nombre, cliente, fechas de inicio y término).
+	& Administrador enlaza encuesta del Sistema de Encuesta con el Proyecto.
+	& Administrador carga tabla en la base de datos (punto de inclusión).
+	& Administrador presiona ``Guardar Proyecto".
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=3)
+	&& Administrador solo posee preguntas de la encuesta.
+	&&& Administrador crea una encuesta en el Sistema de Encuesta.
+	&&& Se retorna al paso 3.
+\end{easylist}
 
 \end{document}
