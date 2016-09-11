@@ -8,7 +8,7 @@
 \usepackage[margin=3cm]{geometry}
 \usepackage[ampersand]{easylist}
 
-\title{\huge Cati Software\\ \Huge C-U- Encuestador\\ \Large Caso de Uso \vspace{30pt}}
+\title{\huge Cati Software\\ \Huge C U Encustador\\ \Large Caso de Uso \vspace{30pt}}
 \author{Ignacio Ampuero\\ 201473032-2 \and Anghelo Carvajal\\ 201473062-4 \and Vicente Lizana\\ 201310004-K}
 \date{\today}
 
@@ -17,22 +17,51 @@
 \begin{document}
 
 \maketitle
+
 \vspace{30pt}
 
 \section{Actores}
 
 	\subsection{Primario}
-	
+
+	\begin{itemize}
+		\item Administrador.
+	\end{itemize}
+
 	\subsection{Secundarios}
-	
+
 	\subsection{Off Stage}
 
 \section{Precondiciones}
 
+\begin{itemize}
+	\item Administrador debe haber iniciado sesión.
+\end{itemize}
+
 \section{Postcondiciones}
+
+\begin{itemize}
+	\item El encuestador nuevo queda ingresado en la base de datos.
+\end{itemize}
 
 \section{Curso Normal}
 
+\begin{easylist}
+	& Administrador va al menú.
+	& Administrador hace click en ``Ingresar/modificar encuestador"
+	& Administrador selecciona ``Ingresar encuestador".
+	& Administrador ingresa los datos del encuestador.
+	& Administrador hace click en ``Guardar".
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=3)
+	&& Administrador selecciona ``Modificar encuestador".
+	&& Administrador selecciona un encuestador de la lista.
+	&& Administrador modifica los datos del encuestador seleccionado.
+	&& Administrador hace click en ``Guardar".
+\end{easylist}
 
 \end{document}
