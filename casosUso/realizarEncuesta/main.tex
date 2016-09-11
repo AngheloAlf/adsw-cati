@@ -8,7 +8,7 @@
 \usepackage[margin=3cm]{geometry}
 \usepackage[ampersand]{easylist}
 
-\title{\huge Cati Software\\ \Huge Hacer Encuesta\\ \Large Caso de Uso \vspace{30pt}}
+\title{\huge Cati Software\\ \Huge Realizar Encuesta\\ \Large Caso de Uso \vspace{30pt}}
 \author{Ignacio Ampuero\\ 201473032-2 \and Anghelo Carvajal\\ 201473062-4 \and Vicente Lizana\\ 201310004-K}
 \date{\today}
 
@@ -23,15 +23,37 @@
 
 	\subsection{Primario}
 	
+	\begin{itemize}
+		\item Encuestador.
+	\end{itemize}
+	
 	\subsection{Secundarios}
+	
+	\begin{itemize}
+		\item Encuestado.
+		\item Sistema de Encuesta (SE).
+	\end{itemize}
 	
 	\subsection{Off Stage}
 
 \section{Precondiciones}
 
+\begin{itemize}
+	\item La llamada debe haber iniciado.
+\end{itemize}
+
 \section{Postcondiciones}
 
+\begin{itemize}
+	\item SE guarda las respuestas.
+\end{itemize}
+
 \section{Curso Normal}
+
+\begin{easylist}
+	& Encuestador transmite las preguntas al Encuestado y va registrando en el SE las respuestas.
+	& Encuestador registra cualquier tipo de comentarios adicionales por parte del Encuestado.
+\end{easylist}
 
 \section{Curso alternativo}
 
