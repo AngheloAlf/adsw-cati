@@ -23,16 +23,48 @@
 
 	\subsection{Primario}
 	
+	\begin{itemize}
+		\item Encuestador
+	\end{itemize}
+	
 	\subsection{Secundarios}
 	
 	\subsection{Off Stage}
+	
+	\begin{itemize}
+		\item Encuestado
+	\end{itemize}
 
 \section{Precondiciones}
 
 \section{Postcondiciones}
 
+\begin{itemize}
+	\item Luego de finalizar exitosamente la llamada el Encuestado es marcado automáticamente como ``Permanentemente Inactivo".
+\end{itemize}
+
 \section{Curso Normal}
 
+\begin{easylist}
+	& Encuestador presiona botón de realizar llamada.
+	& Al contestar el Encuestado, el Encuestador efectúa el saludo protocolar.
+	& Encuestador inicia caso de Grabar Llamada (punto de inclusión).
+	& Encuestador procede a realizar encuesta (punto de inclusión).
+	& Encuestador efectúa la despedida protocolar y finaliza la llamada.
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=2)
+	&& Encuestado no contesta o se niega a ser encuestado.
+	&&& Encuestador modifica el estado del Encuestado (punto de extensión).
+	\ListProperties(Start1=4)
+	&& Llamada se interrumpe.
+	&&& Encuestador presiona rediscar.
+	&&&& Encuestado responde y se prosigue con la encuesta.
+	&&&& Encuestado no responde.
+	&&&&& Encuestador modifica el estado del Encuestado (punto de extensión).
+\end{easylist}
 
 \end{document}
