@@ -76,6 +76,7 @@ app.post('/login', login.connect);
 app.get('/users', user.interface);
 
 app.get('/admin', admin.interface);
+app.post('/admin', admin.processForm);
 
 // 404 error handler
 app.use(function(req, res){

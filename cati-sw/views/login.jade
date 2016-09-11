@@ -15,11 +15,11 @@ block content
           .field
             .ui.left.icon.input
               i.user.icon
-              input(name='rut', id='rut', placeholder='12345678-9', type='text')
+              input#rut(name='rut', placeholder='12345678-9', type='text')
           .field
             .ui.left.icon.input
               i.lock.icon
-              input(name='password', id='password', placeholder='Clave', type='password')
+              input#password(name='password', placeholder='Clave', type='password')
           button.ui.fluid.large.teal.submit.button Entrar
         .ui.error.message
        p(id='error' style='color:red;') #{error}

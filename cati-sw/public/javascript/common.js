@@ -73,4 +73,5 @@ function validate_login(){
 (function(exports){
     exports.validate_rut = validate_rut;
     exports.validate_pass = validate_pass;
+    exports.dV = dV;
 }(typeof exports === 'undefined' ? this.common = {} : exports));
