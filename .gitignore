@@ -49,3 +49,7 @@ jspm_packages
 *.synctex.gz
 *.dvi
 *.out
+
+# VPP
+*.vux
+*.vpp.bak*
