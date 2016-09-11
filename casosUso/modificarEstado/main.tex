@@ -7,7 +7,6 @@
 \usepackage{mathtools}
 \usepackage[margin=3cm]{geometry}
 \usepackage[ampersand]{easylist}
-\usepackage[ampersand]{easylist}
 
 \title{\huge Cati Software\\ \Huge Modificar Estado\\ \Large Caso de Uso \vspace{30pt}}
 \author{Ignacio Ampuero\\ 201473032-2 \and Anghelo Carvajal\\ 201473062-4 \and Vicente Lizana\\ 201310004-K}
@@ -25,7 +24,7 @@
 	\subsection{Primario}
 	
 	\begin{itemize}
-		\item Encuestador
+		\item Encuestador.
 	\end{itemize}		
 	
 	\subsection{Secundarios}
@@ -33,15 +32,37 @@
 	\subsection{Off Stage}
 	
 	\begin{itemize}
-		\item Encuestado
+		\item Encuestado.
 	\end{itemize}
 
 \section{Precondiciones}
 
+\begin{itemize}
+	\item Encuestado debe estar en la base de datos del proyecto.
+	\item Encuestador debe haber iniciado sesión.
+\end{itemize}
+
 \section{Postcondiciones}
+
+\begin{itemize}
+	\item Los cambios quedan guardados en la base de datos.
+\end{itemize}
 
 \section{Curso Normal}
 
+\begin{easylist}
+	& Encuestador va al menú.
+	& Encuestador hace click en ``Opciones de contacto"
+	& En estado, el Encuestador selecciona ``Permanentemente inactivo"
+	& Encuestador hace click en ``Guardar"
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=3)
+	&& Encuestador hace click en ``Temporalmente inactivo"
+	&& Encuestador hace click en ``Activo"
+\end{easylist}
 
 \end{document}
