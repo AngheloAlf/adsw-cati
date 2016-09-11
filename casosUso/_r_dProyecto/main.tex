@@ -23,16 +23,43 @@
 
 	\subsection{Primario}
 	
+	\begin{itemize}
+		\item Administrador
+	\end{itemize}
+	
 	\subsection{Secundarios}
 	
 	\subsection{Off Stage}
+	
+	\begin{itemize}
+		\item Cliente
+	\end{itemize}
 
 \section{Precondiciones}
 
 \section{Postcondiciones}
 
+\begin{itemize}
+	\item Al borrar un proyecto, cualquier información que no haya sido guardada manualmente se perderá de manera irreversible.
+\end{itemize}
+
 \section{Curso Normal}
 
+\begin{easylist}
+	& Administrador selecciona ``Ver proyectos".
+	& Administrador selecciona un proyecto en particular.
+	& Sistema muestra detalles y opciones del proyecto.
+	& Al finalizar, Administrador vuelve al menú.
+\end{easylist}
+
 \section{Curso alternativo}
+
+\begin{easylist}
+	\ListProperties(Start1=3)
+	&& Administrador desea eliminar proyecto.
+	&&& Administrador presiona ``Eliminar proyecto".
+	&&& Sistema solicita clave de Administrador.
+	&&& Administrador ingresa clave.
+\end{easylist}
 
 \end{document}
