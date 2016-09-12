@@ -25,6 +25,7 @@
 	\subsection{Primario}
 
 	\begin{itemize}
+		\item Encuestador.
 		\item Administrador.
 	\end{itemize}
 
@@ -35,43 +36,51 @@
 \section{Precondiciones}
 
 \begin{itemize}
+	\item Encuestador debe haber iniciado sesión.
 	\item Administrador debe haber iniciado sesión.
 \end{itemize}
 
 \section{Postcondiciones}
 
 \begin{itemize}
-	\item El encuestador nuevo queda ingresado en la base de datos.
+	\item La nueva información del encuestador queda actualizada en la base de datos.
 \end{itemize}
 
 \section{Curso Normal}
 
 \begin{easylist}
-	& Administrador va al menú.
-	& Administrador hace click en ``Ingresar/modificar encuestador"
-	& Administrador selecciona ``Ingresar encuestador".
-	& Administrador ingresa los datos del encuestador.
-	& Administrador hace click en ``Guardar".
+	& Encuestador va al menú.
+	& Encuestador hace click en ``Modificar Información encuestador"
+	& Encuestador ingresa sus nuevos datos.
+	& Encuestador hace click en ``Guardar".
 \end{easylist}
 
 \section{Curso alternativo}
 
 \begin{easylist}
-	\ListProperties(Start1=2)
-	&& Administrador selecciona ``Modificar encuestador".
-	&& Administrador selecciona un encuestador de la lista.
-	&& Administrador modifica los datos del encuestador seleccionado.
+	\ListProperties(Start1=1)
+	&& El administrador administrador va al menú
+	&& Administrador hace click en ``Modificar Información encuestador"
+	&& Administrador ingresa los nuevos datos del encuestador.
+	&&& Administrador ingresa datos erroneos.
+	&&& Sistema le permite corregir los datos ingresados.
+	&&& Administrador corrige los datos.
+	&&& Administrador hace click en ``Guardar"
 	&& Administrador hace click en ``Guardar".
+	&&& Los datos del encuestador ingresado ya existen.
+	&&& Sistema permite corregir los datos.
+	&&& Administrador corrige los datos.
+	&&& Administrador hace click en ``Guardar".
+	\ListProperties(Start1=3)
+	&& El encuestador ingresa mal los datos
+	&& El sistema permite al encuestador corregir los datos erróneos.
+	&& El encuestador corrige los datos erróneos.
+	&& Encuestador hace click en ``Guardar".
 	\ListProperties(Start1=4)
-	&& El Administrador ingresa mal los datos
-	&& El sistema permite al administrador corregir los datos erróneos.
-	&& El administrador corrige los datos erróneos.
-	&& Administrador hace click en ``Guardar".
-	\ListProperties(Start1=5)
 	&& Los datos de encuestador ingresado ya existen en la base de datos.
-	&& El sistema permite al administrador corregir los datos erróneos.
-	&& El administrador corrige los datos erróneos.
-	&& Administrador hace click en ``Guardar".
+	&& El sistema permite al encuestador corregir los datos erróneos.
+	&& El encuestador corrige los datos erróneos.
+	&& Encuestador hace click en ``Guardar".
 \end{easylist}
 
 \end{document}
