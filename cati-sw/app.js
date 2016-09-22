@@ -70,12 +70,12 @@ if ('development' == app.get('env')) {
 app.get('/', index.index);
 app.post('/', index.log_out);
 
-app.get('/login', login.interface);
+app.get('/login', login.loginInterface);
 app.post('/login', login.connect);
 
-app.get('/users', user.interface);
+app.get('/users', user.userInterface);
 
-app.get('/admin', admin.interface);
+app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
 // 404 error handler
