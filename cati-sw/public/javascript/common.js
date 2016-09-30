@@ -41,7 +41,7 @@ function dV(rut_start){
 }
 
 //True if is a valid rut
-function validate_rut(rut){
+function validateRut(rut){
     var pat = /^[0-9]{1,9}-([0-9]|k|K)$/;
     if(pat.test(rut)){
         var splited_rut = rut.split("-");
@@ -51,12 +51,23 @@ function validate_rut(rut){
 }
 
 //True if pass has only ascii characters
-function validate_pass(pass){
+function testAscii(string){
     var pat = /^[\x00-\x7F]+$/;
-    return pat.test(pass);
+    return pat.test(string);
 }
 
-function validate_login(){
+//
+function validatePass(pass){
+    return testAscii(pass);
+}
+
+
+function validateMail(mail){
+    var pat = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    return pat.test(mail);
+}
+
+function validateLogin(){
     var rut = document.getElementById("rut").value;
     var pass = document.getElementById("password").value;
     if(validate_rut(rut) && validate_pass(pass)){
@@ -71,7 +82,9 @@ function validate_login(){
 }
 
 (function(exports){
-    exports.validate_rut = validate_rut;
-    exports.validate_pass = validate_pass;
+    exports.validateRut = validateRut;
+    exports.validatePass = validatePass;
     exports.dV = dV;
+    exports.testAscii = testAscii;
+    exports.validateMail = validateMail;
 }(typeof exports === 'undefined' ? this.common = {} : exports));

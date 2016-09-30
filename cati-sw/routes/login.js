@@ -3,7 +3,7 @@
  */
 
 //Log-in interface
-exports.interface = function(req, res){
+exports.loginInterface = function(req, res){
     if(req.session.userData){ //If user has logged in, this redirect to the users page
         res.redirect('/users');
     }
@@ -23,10 +23,6 @@ exports.interface = function(req, res){
 };
 
 // **connecting**
-/** TODO:
- * -Discriminate between user or admin
- * -etc
- * **/
 exports.connect = function(req, res){
     if(req.body.rut && req.body.password) { //if rut and password are set from POST, saves the session variable
         var rut = req.body.rut;
@@ -34,13 +30,13 @@ exports.connect = function(req, res){
 
         //True if rut and pass are valid
         var common = require("../public/javascript/common");
-        if(common.validate_rut(rut) && common.validate_pass(pass)){
+        if(common.validateRut(rut) && common.validatePass(pass)){
 
             var User = require('../models/user').User;
-            var user = new User();
+            var userVar = new User();
 
             var where = "rut='" + rut + "' AND pass='" + pass + "'";
-            user.find('all', {fields: ["name"], where: where}, function (err, rows) {
+            userVar.find('all', {fields: ["name"], where: where}, function (err, rows) {
                 if(err){
                     throw err;
                 }
@@ -56,13 +52,13 @@ exports.connect = function(req, res){
                             req.session.accountNotFound = 1;
                             res.redirect("/login");
                         }
-                        else{
+                        else{//login admin
                             req.session.userData = {userRut: rut, userName: rows[0].name, admin: 1};
                             res.redirect('/admin');
                         }
                     });
                 }
-                else{
+                else{//login user
                     req.session.userData = {userRut: rut, userName: rows[0].name, admin: 0};
                     res.redirect('/users');
                 }

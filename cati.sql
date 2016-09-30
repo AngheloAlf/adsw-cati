@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-09-09 00:45:52
+Date: 2016-09-30 20:25:28
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -23,14 +23,16 @@ CREATE TABLE `admin` (
   `id_admin` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL,
   `rut` varchar(15) NOT NULL,
-  `password` varchar(63) NOT NULL,
+  `pass` varchar(63) NOT NULL,
   `email` varchar(127) NOT NULL,
   PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('1', 'Anghelo', '19125145-8', 'root', 'root@mail.mail');
+INSERT INTO `admin` VALUES ('2', 'Mono', '19306593-7', '456', 'mono@mono.mono');
 
 -- ----------------------------
 -- Table structure for call
@@ -98,7 +100,8 @@ CREATE TABLE `project` (
   `name` varchar(255) NOT NULL,
   `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   `finish_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `id_client` int(10) unsigned DEFAULT NULL,
+  `id_client` int(10) unsigned NOT NULL,
+  `url_survey` varchar(255) NOT NULL,
   PRIMARY KEY (`id_project`),
   KEY `id_client` (`id_client`),
   CONSTRAINT `project_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
@@ -119,10 +122,12 @@ CREATE TABLE `user` (
   `pass` varchar(63) NOT NULL,
   `email` varchar(127) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', 'Anghelo', '19125145-8', 'Anghelo95', 'angheloalf95@gmail.com');
 INSERT INTO `user` VALUES ('2', 'Ignacio', '19306593-7', '123', 'maill@mail.mail');
+INSERT INTO `user` VALUES ('4', 'Alf', '19125145-8', 'Clave', 'mail@mail.com');
+INSERT INTO `user` VALUES ('5', 'hola', '18275030-1', 'chao', 'a@a.c');
