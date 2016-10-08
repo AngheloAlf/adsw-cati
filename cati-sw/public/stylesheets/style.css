@@ -6,3 +6,16 @@ body {
 a {
   color: #00B7FF;
 }
+
+.centered{
+  text-align: center;
+}
+
+.subcenter{
+  margin-left: 15%;
+  margin-right: 15%;
+}
+.callcenter {
+  background-image: url(../static/ccblur.jpg);
+  background-size: 100% 120%;
+}
