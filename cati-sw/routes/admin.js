@@ -63,7 +63,7 @@ exports.processForm = function (req, res){
         }
 
         //render the admin dash
-        interface(req, res);
+        adminInterface(req, res);
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
