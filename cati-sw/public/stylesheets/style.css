@@ -17,5 +17,9 @@ a {
 }
 .callcenter {
   background-image: url(../static/ccblur.jpg);
-  background-size: 100% 120%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.transwhite{
+  background:rgba(255,255,255,0.5);
 }
