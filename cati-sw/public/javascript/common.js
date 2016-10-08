@@ -70,7 +70,7 @@ function validateMail(mail){
 function validateLogin(){
     var rut = document.getElementById("rut").value;
     var pass = document.getElementById("password").value;
-    if(validate_rut(rut) && validate_pass(pass)){
+    if(validateRut(rut) && validatePass(pass)){
         document.getElementById("error").innerHTML = "";
         return true;
     }

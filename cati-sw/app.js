@@ -78,6 +78,8 @@ app.get('/users', user.userInterface);
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
+app.get('/admin/crearProyecto', admin.createProyectInterface);
+
 // 404 error handler
 app.use(function(req, res){
     var err = new Error('Not Found');

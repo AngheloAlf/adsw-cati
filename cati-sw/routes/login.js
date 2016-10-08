@@ -5,7 +5,12 @@
 //Log-in interface
 exports.loginInterface = function(req, res){
     if(req.session.userData){ //If user has logged in, this redirect to the users page
-        res.redirect('/users');
+        if(!req.session.userData.admin){
+            res.redirect('/users');
+        }
+        else{
+            res.redirect('/admin');
+        }
     }
     else{ //else, redirects to the log-in interface
         var errorMessage = '';

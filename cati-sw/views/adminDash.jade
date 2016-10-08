@@ -2,6 +2,7 @@
    Created by Anghelo on 09-09-2016.
     TODO: everything :c
 
+
 extends layout
 
 block content
@@ -13,6 +14,7 @@ block content
         form(action='/', method='POST')
             button(name='submitButton', value='log_out') Cerrar sesión
         br
+        a(href='/admin/crearProyecto') Crear proyecto
     div
         form(action='', method='POST')
             h2 Crear encuestador

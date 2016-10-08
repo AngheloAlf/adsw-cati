@@ -73,3 +73,11 @@ exports.processForm = function (req, res){
 
 exports.adminInterface = adminInterface;
 
+exports.createProyectInterface = function(req, res){
+    if(req.session.userData && req.session.userData.admin){ //If admin is connected
+        res.render('createProyectDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};

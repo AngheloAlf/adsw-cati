@@ -1,0 +1,45 @@
+//
+   Created by Anghelo on 08-10-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido admin #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+
+    div
+        form(action='', method='POST')
+            h2 Crear Proyecto
+            label Nombre
+            br
+            input#proyectName(type='text', name='proyectName', required='')
+            br
+            label Fecha de inicio
+            br
+            input#proyectStart(type='date', name='proyectStart', required='')
+            br
+            label Fecha de termino
+            br
+            input#proyectEnd(type='date', name='proyectEnd', required='')
+            br
+            label Client
+            br
+            input#proyectClient(type='text', name='proyectClient', required='')
+            br
+            label Enlace a la encuesta
+            br
+            input#proyectMail(type='text', name='proyectMail', required='')
+            br
+            label CSV de contactos
+            br
+            input#proyectCsv(type='file', name='proyectCsv', required='')
+            br
+            br
+            button(name='submitButton', value='createInter') Crear encuestador
+            br
