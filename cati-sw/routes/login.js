@@ -31,38 +31,9 @@ exports.connect = function(req, res){
         //True if rut and pass are valid
         var common = require("../public/javascript/common");
         if(common.validateRut(rut) && common.validatePass(pass)){
+            var User = require('../models/user');
 
-            var User = require('../models/user').User;
-            var userVar = new User();
-
-            var where = "rut='" + rut + "' AND pass='" + pass + "'";
-            userVar.find('all', {fields: ["name"], where: where}, function (err, rows) {
-                if(err){
-                    throw err;
-                }
-                if(rows[0] === undefined){ //User and pass conbination not found on user db
-                    var Admin = require('../models/admin').Admin;
-                    var admin = new Admin;
-
-                    admin.find('all', {fields: ["name"], where: where}, function(err, rows){
-                        if(err){
-                            throw err;
-                        }
-                        if(rows[0] === undefined){ //User and pass conbination not found on admin db
-                            req.session.accountNotFound = 1;
-                            res.redirect("/login");
-                        }
-                        else{//login admin
-                            req.session.userData = {userRut: rut, userName: rows[0].name, admin: 1};
-                            res.redirect('/admin');
-                        }
-                    });
-                }
-                else{//login user
-                    req.session.userData = {userRut: rut, userName: rows[0].name, admin: 0};
-                    res.redirect('/users');
-                }
-            });
+            User.getUser(req, res, rut, pass);
         }
         else{ //Else, display an error in screen
             req.session.invalidRutPass = 1;

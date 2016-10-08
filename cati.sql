@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-09-30 20:25:28
+Date: 2016-10-08 11:45:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,6 +82,7 @@ CREATE TABLE `contact` (
   `number` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `id_project` int(10) unsigned NOT NULL,
+  `state` varchar(255) NOT NULL,
   PRIMARY KEY (`id_contact`),
   KEY `id_project` (`id_project`),
   CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`id_project`) REFERENCES `project` (`id_project`)
