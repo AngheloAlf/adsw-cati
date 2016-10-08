@@ -16,7 +16,7 @@ block content
     div
         form(action='', method='POST')
             h2 Crear Proyecto
-            label Nombre
+            label Nombre de Proyecto
             br
             input#proyectName(type='text', name='proyectName', required='')
             br
@@ -28,9 +28,11 @@ block content
             br
             input#proyectEnd(type='date', name='proyectEnd', required='')
             br
-            label Client
+            label Cliente
             br
-            input#proyectClient(type='text', name='proyectClient', required='')
+            select#proyectClient(name='proyectClient', required='')
+                each client in clientsList
+                    option(value=client.id_client, id="client"+client.id_client) #{client.name}
             br
             label Enlace a la encuesta
             br
@@ -41,5 +43,5 @@ block content
             input#proyectCsv(type='file', name='proyectCsv', required='')
             br
             br
-            button(name='submitButton', value='createInter') Crear encuestador
+            button(name='submitButton', value='createInter') Crear proyecto
             br

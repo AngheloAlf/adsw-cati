@@ -25,22 +25,9 @@ function createAccount(req, res){
 
     if(common.testAscii(name) && common.validateRut(rut) && common.validatePass(pass) && common.validatePass(pass2) && common.validateMail(email)){
         if(pass == pass2){
-            var User = require('../models/user').User;
-            var userVar = new User;
+            var User = require('../models/user');
 
-            userVar.find('all', {where: "rut='" + rut + "'"}, function (err, rows) {
-                if (err) {
-                    throw err;
-                }
-                if (rows[0] === undefined) { //This rut does not exist in the users db
-                    var user = new User({name: name, rut: rut, pass: pass, email: email});
-                    user.save();
-                }
-                else{
-                    //TODO: show error - rut exists in the db
-
-                }
-            });
+            User.createUser(name, rut, pass, email);
         }
         else{
             //TODO: show error - pass doesn't match
@@ -75,7 +62,7 @@ exports.adminInterface = adminInterface;
 
 exports.createProyectInterface = function(req, res){
     if(req.session.userData && req.session.userData.admin){ //If admin is connected
-        res.render('createProyectDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+        res.render('createProyectDash', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
