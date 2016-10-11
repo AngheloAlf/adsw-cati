@@ -14,7 +14,7 @@ block content
         br
 
     div
-        form(action='', method='POST')
+        form(action='', method='POST' encType="multipart/form-data")
             h2 Crear Proyecto
             label Nombre de Proyecto
             br
@@ -43,5 +43,5 @@ block content
             input#proyectCsv(type='file', name='proyectCsv', required='')
             br
             br
-            button(name='submitButton', value='createInter') Crear proyecto
+            button(name='submitButton', value='createProyect') Crear proyecto
             br

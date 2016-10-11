@@ -18,8 +18,14 @@ exports.adminInterface = adminInterface;
 exports.processForm = function (req, res){
 
     if(req.session.userData && req.session.userData.admin) { //If admin is connected
-        if (req.body.submitButton == "createInter") { //Create interviewer
-            createAccount(req, res);
+        if(req.body.submitButton == "createInter"){ //Create interviewer
+            var User = require('../models/user.js');
+            User.createAccount(req, res);
+        }
+        else if(req.body.submitButton == "createProyect"){
+            var proyectCsv = req.files.proyectCsv;
+            console.log(proyectCsv.data.toString());
+            //TODO: Parse csv file and add it to the contacts table, then add the proyect to the db
         }
 
         //render the admin dash
