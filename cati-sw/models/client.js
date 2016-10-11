@@ -35,6 +35,5 @@ exports.getAllClient = function(req, res){
             throw err;
         }
         req.session.clients = rows;
-        console.log(rows);
     });
 };

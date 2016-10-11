@@ -8,6 +8,7 @@ var Db = index.Db;
 var User = Db.extend({
     tableName: "user"
 });
+exports.User = User;
 
 exports.getUser = function(req, res, rut, pass){
     userVar = new User();
@@ -26,9 +27,9 @@ exports.getUser = function(req, res, rut, pass){
             res.redirect('/users');
         }
     });
-}
+};
 
-exports.createUser = function(name, rut, pass, email){
+function createUser(name, rut, pass, email){
     var where = "rut='" + rut + "'";
     var userVar = new User();
 
@@ -44,6 +45,35 @@ exports.createUser = function(name, rut, pass, email){
             //TODO: show error - rut exists in the db
         }
     });
-};
+}
+exports.createUser = createUser;
 
-exports.User = User;
+//
+//TODO: show if rut already exists, show if successful, show if error
+function createAccount(req, res){
+    var common = require("../public/javascript/common");
+
+    var name = req.body.interName;
+    var rut = req.body.interRut;
+    var pass = req.body.interPass;
+    var pass2 = req.body.interPass2;
+    var email = req.body.interMail;
+
+    if(common.testAscii(name) && common.validateRut(rut) && common.validatePass(pass) && common.validatePass(pass2) && common.validateMail(email)){
+        if(pass == pass2){
+            //var User = require('../models/user');
+
+            createUser(name, rut, pass, email);
+        }
+        else{
+            //TODO: show error - pass doesn't match
+
+        }
+    }
+    else{
+        //TODO: show error - invalid characters
+
+    }
+}
+exports.createAccount = createAccount;
+
