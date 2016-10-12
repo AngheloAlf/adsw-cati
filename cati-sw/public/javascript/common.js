@@ -12,7 +12,7 @@ function easter_eggColor(){
     document.getElementById("easter_egg5").style.opacity = "1.0";
 }
 function easter_eggImage(){
-    document.getElementById("easter_egg").style.backgroundImage = "url('static/konga.gif')";
+    document.getElementById("easter_egg").style.backgroundImage = "url('/static/konga.gif')";
     document.getElementById("easter_egg").style.backgroundSize = "70px 70px";
     document.getElementById("easter_egg2").style.opacity = "0.6";
     document.getElementById("easter_egg3").style.opacity = "0.7";
