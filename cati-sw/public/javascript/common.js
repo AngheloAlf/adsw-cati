@@ -81,10 +81,28 @@ function validateLogin(){
     }
 }
 
+function testDate(string){
+    var pat = /^[1-9][0-9]{3}\-(0[1-9]|1[0-2])\-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    return pat.test(string);
+}
+
+function testIsANumber(string){
+    var pat = /^[0-9]+$/;
+    return pat.test(string);
+}
+
+function testUrl(string){
+    var pat = /^(http(s)?:\/\/)?[a-zA-Z0-9_\-.]+\.[a-zA-Z0-9_\-]+$/ ;
+    return pat.test(string);
+}
+
 (function(exports){
     exports.validateRut = validateRut;
     exports.validatePass = validatePass;
     exports.dV = dV;
     exports.testAscii = testAscii;
     exports.validateMail = validateMail;
+    exports.testDate = testDate;
+    exports.testIsANumber = testIsANumber;
+    exports.testUrl = testUrl;
 }(typeof exports === 'undefined' ? this.common = {} : exports));

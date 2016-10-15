@@ -23,13 +23,24 @@ exports.processForm = function (req, res){
             User.createAccount(req, res);
         }
         else if(req.body.submitButton == "createProyect"){
+            var Project = require('../models/project.js');
+            Project.createNewProject(res, req);
+
+            /*
+            var parse = require('csv-parse/lib/sync');
+            var Contact = require('../models/contact.js');
+
             var proyectCsv = req.files.proyectCsv;
-            console.log(proyectCsv.data.toString());
-            //TODO: Parse csv file and add it to the contacts table, then add the proyect to the db
+            var csvParsed = parse(proyectCsv.data.toString());
+
+            for(var i = 0; i < csvParsed.length; i++){
+                Contact.createContact(csvParsed[i][0], csvParsed[i][1], csvParsed[i][2], csvParsed[i][3], projectId);
+            }*/
         }
 
         //render the admin dash
-        adminInterface(req, res);
+        //adminInterface(req, res);
+        res.redirect('/admin');
     }
     else{//else, redirects to the login interface
         res.redirect('/login');

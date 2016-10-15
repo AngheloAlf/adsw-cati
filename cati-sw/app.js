@@ -18,7 +18,7 @@ var bodyParser = require('body-parser'); // for reading POSTed form data into `r
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser'); // the session is stored in a cookie, so we use this to parse it
 var fileUpload = require('express-fileupload'); // To handle files uploads
-var csv = require('csv'); //CSV generation, parsing, transformation and serialization
+//var csv = require('csv'); //CSV generation, parsing, transformation and serialization
 
 
 // must use cookieParser before expressSession
