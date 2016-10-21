@@ -14,11 +14,11 @@ exports.getUser = function(req, res, rut, pass){
     userVar = new User();
     var where = "rut='" + rut + "' AND pass='" + pass + "'";
 
-    userVar.find('all', {fields: ["name"], where: where}, function (err, rows) {
-        if (err) {
+    userVar.find('all', {fields: ["name"], where: where}, function (err, rows){
+        if(err){
             throw err;
         }
-        if (rows[0] === undefined) { //User and pass conbination not found on user db
+        if(rows[0] === undefined){ //User and pass conbination not found on user db
             var Admin = require('../models/admin');
             Admin.getAdmin(req, res, rut, pass);
         }
