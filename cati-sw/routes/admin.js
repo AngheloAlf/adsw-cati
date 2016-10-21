@@ -55,3 +55,12 @@ exports.createProyectInterface = function(req, res){
         res.redirect('/login');
     }
 };
+
+exports.createUserInterface = function(req, res){
+    if(req.session.userData && req.session.userData.admin){ //If admin is connected
+        res.render('createUserDash', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};

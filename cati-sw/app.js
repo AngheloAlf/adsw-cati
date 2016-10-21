@@ -64,6 +64,9 @@ app.post('/admin', admin.processForm);
 app.get('/admin/crearProyecto', admin.createProyectInterface);
 app.post('/admin/crearProyecto', admin.processForm);
 
+app.get('/admin/crearEncuestador', admin.createUserInterface);
+app.post('/admin/crearEncuestador', admin.processForm);
+
 // 404 error handler
 app.use(function(req, res){
     var err = new Error('Not Found');
