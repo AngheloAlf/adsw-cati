@@ -40,6 +40,7 @@ function createUser(name, rut, pass, email){
         if(rows[0] === undefined){ //This rut does not exist in the users db
             var user = new User({name: name, rut: rut, pass: pass, email: email});
             user.save();
+            getAllUsers(req, res);
         }
         else{
             //TODO: show error - rut exists in the db
@@ -50,7 +51,7 @@ exports.createUser = createUser;
 
 //
 //TODO: show if rut already exists, show if successful, show if error
-function createAccount(req, res){
+function createAccount(req){
     var common = require("../public/javascript/common");
 
     var name = req.body.interName;
@@ -61,13 +62,10 @@ function createAccount(req, res){
 
     if(common.testAscii(name) && common.validateRut(rut) && common.validatePass(pass) && common.validatePass(pass2) && common.validateMail(email)){
         if(pass == pass2){
-            //var User = require('../models/user');
-
             createUser(name, rut, pass, email);
         }
         else{
             //TODO: show error - pass doesn't match
-
         }
     }
     else{
@@ -95,7 +93,7 @@ function changePass(userID, oldPass, newPass){
 }
 exports.changePass = changePass;
 
-exports.getAllUsers = function(req, res){
+function getAllUsers(req){
     var userVar = new User();
 
     userVar.find('all', {}, function (err, rows){
@@ -104,7 +102,8 @@ exports.getAllUsers = function(req, res){
         }
         req.session.users = rows;
     });
-};
+}
+exports.getAllUsers = getAllUsers;
 
 exports.deleteUser = function(id_user){
     var userVar = new User();

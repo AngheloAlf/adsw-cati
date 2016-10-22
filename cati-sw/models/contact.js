@@ -9,10 +9,11 @@ var Contact = Db.extend({
     tableName: "contact"
 });
 
-exports.createContact = function(firstName, lastName, number, email, idProject){
-    var where = "first_name='" + firstName + "' AND last_name='" + lastName + "'";
-    var contactVar = new Contact();
+exports.createContact = function(firstName, lastName, number, state, idProject){
+    var contactVar = new Contact({first_name: firstName, last_name: lastName, number: number, state: state, id_project: idProject});
+    contactVar.save();
 
+    /*var where = "first_name='" + firstName + "' AND last_name='" + lastName + "'";
     contactVar.find('all', {where: where}, function (err, rows){
         if(err){
             throw err;
@@ -27,10 +28,10 @@ exports.createContact = function(firstName, lastName, number, email, idProject){
             console.log("failure :C");
             //TODO: show error - contact exists in the db
         }
-    });
+    });*/
 };
 
-exports.getAllContact = function(req, res){
+exports.getAllContact = function(req){
     var contactVar = new Contact();
 
     contactVar.find('all', {}, function (err, rows){

@@ -70,6 +70,8 @@ app.get('/admin/crearEncuestador', admin.createUserInterface);
 
 app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
 
+app.get('/admin/subirCSV', admin.uploadCSVInterface);
+
 // 404 error handler
 app.use(function(req, res){
     var err = new Error('Not Found');

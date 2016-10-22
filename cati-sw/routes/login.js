@@ -43,6 +43,8 @@ exports.connect = function(req, res){
             var Client = require('../models/client');
             Client.getAllClient(req, res);
 
+            var Project = require('../models/project');
+            Project.getAllProjects(req, res);
         }
         else{ //Else, display an error in screen
             req.session.invalidRutPass = 1;
