@@ -49,7 +49,7 @@ exports.processForm = function (req, res){
 
 exports.createProyectInterface = function(req, res){
     if(req.session.userData && req.session.userData.admin){ //If admin is connected
-        res.render('createProyectDash', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+        res.render('createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
@@ -58,7 +58,7 @@ exports.createProyectInterface = function(req, res){
 
 exports.createUserInterface = function(req, res){
     if(req.session.userData && req.session.userData.admin){ //If admin is connected
-        res.render('createUserDash', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+        res.render('createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
     }
     else{//else, redirects to the login interface
         res.redirect('/login');

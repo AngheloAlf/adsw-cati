@@ -14,7 +14,7 @@ function getAdmin(req, res, rut, pass){
     var admin = new Admin;
     var where = "rut='" + rut + "' AND pass='" + pass + "'";
 
-    admin.find('all', {fields: ["name"], where: where}, function (err, rows) {
+    admin.find('all', {fields: ["id_admin", "name"], where: where}, function (err, rows) {
         if(err){
             throw err;
         }
@@ -23,7 +23,7 @@ function getAdmin(req, res, rut, pass){
             res.redirect("/login");
         }
         else{//login admin
-            req.session.userData = {userRut: rut, userName: rows[0].name, admin: 1};
+            req.session.userData = {userID: rows[0].id_admin, userRut: rut, userName: rows[0].name, admin: 1};
             res.redirect('/admin');
         }
     });

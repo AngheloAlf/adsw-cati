@@ -14,7 +14,7 @@ exports.getUser = function(req, res, rut, pass){
     userVar = new User();
     var where = "rut='" + rut + "' AND pass='" + pass + "'";
 
-    userVar.find('all', {fields: ["name"], where: where}, function (err, rows){
+    userVar.find('all', {fields: ["id_user", "name"], where: where}, function (err, rows){
         if(err){
             throw err;
         }
@@ -23,7 +23,7 @@ exports.getUser = function(req, res, rut, pass){
             Admin.getAdmin(req, res, rut, pass);
         }
         else {//login user
-            req.session.userData = {userRut: rut, userName: rows[0].name, admin: 0};
+            req.session.userData = {userID: rows[0].id_user, userRut: rut, userName: rows[0].name, admin: 0};
             res.redirect('/users');
         }
     });
@@ -77,3 +77,20 @@ function createAccount(req, res){
 }
 exports.createAccount = createAccount;
 
+function changePass(userID, oldPass, newPass){
+    var userVar = new User();
+
+    userVar.query("UPDATE user SET pass='" + newPass + "' WHERE id_user ='" + userID + "' AND pass='" + oldPass + "'", function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.changedRows > 0){
+            //TODO: message: password change
+        }
+        else{
+            //TODO: message: password not change
+        }
+    });
+    userVar.save();
+}
+exports.changePass = changePass;
