@@ -56,19 +56,19 @@ app.post('/', index.log_out);
 app.get('/login', login.loginInterface);
 app.post('/login', login.connect);
 
-app.get('/users', user.userInterface);
+app.get('/user', user.userInterface);
+app.post('/user', user.processForm);
+
+app.get('/user/modificarDatos', user.changePassInterface);
 
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
 app.get('/admin/crearProyecto', admin.createProyectInterface);
-app.post('/admin/crearProyecto', admin.processForm);
 
 app.get('/admin/crearEncuestador', admin.createUserInterface);
-app.post('/admin/crearEncuestador', admin.processForm);
 
-app.get('/user/modificarDatos', user.changePassInterface);
-app.post('/user/modificarDatos', user.processForm);
+app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
 
 // 404 error handler
 app.use(function(req, res){

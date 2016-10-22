@@ -1,6 +1,5 @@
 
-//users interface
-// TODO: make a jade page for users
+//user interface
 exports.userInterface = function(req, res){
     if(req.session.userData && !req.session.userData.admin){ //If user is connected
         res.render('userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
@@ -23,7 +22,7 @@ exports.processForm = function(req, res){
                 User.changePass(req.session.userData.userID, req.body.interOldPass, req.body.interNewPass);
             }
         }
-        res.redirect('/admin');
+        res.redirect('/user');
     }
     else{//else, redirects to the login interface
         res.redirect('/login');

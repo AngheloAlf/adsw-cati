@@ -24,7 +24,7 @@ exports.getUser = function(req, res, rut, pass){
         }
         else {//login user
             req.session.userData = {userID: rows[0].id_user, userRut: rut, userName: rows[0].name, admin: 0};
-            res.redirect('/users');
+            res.redirect('/user');
         }
     });
 };
@@ -94,3 +94,31 @@ function changePass(userID, oldPass, newPass){
     userVar.save();
 }
 exports.changePass = changePass;
+
+exports.getAllUsers = function(req, res){
+    var userVar = new User();
+
+    userVar.find('all', {}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        req.session.users = rows;
+    });
+};
+
+exports.deleteUser = function(id_user){
+    var userVar = new User();
+    var where = "id_user='" + id_user + "'";
+    userVar.remove(where, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.affectedRows == 1){
+            //TODO: show user deleted
+        }
+        else{
+            //TODO: show error
+        }
+    });
+    userVar.save()
+};

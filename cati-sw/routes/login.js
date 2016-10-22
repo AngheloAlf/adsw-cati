@@ -38,9 +38,11 @@ exports.connect = function(req, res){
         if(common.validateRut(rut) && common.validatePass(pass)){
             var User = require('../models/user');
             User.getUser(req, res, rut, pass);
+            User.getAllUsers(req, res);
 
             var Client = require('../models/client');
             Client.getAllClient(req, res);
+
         }
         else{ //Else, display an error in screen
             req.session.invalidRutPass = 1;

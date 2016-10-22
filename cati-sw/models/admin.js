@@ -24,6 +24,8 @@ function getAdmin(req, res, rut, pass){
         }
         else{//login admin
             req.session.userData = {userID: rows[0].id_admin, userRut: rut, userName: rows[0].name, admin: 1};
+
+
             res.redirect('/admin');
         }
     });
