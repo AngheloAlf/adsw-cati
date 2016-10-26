@@ -1,10 +1,11 @@
 extends layout
 
 block content
-  div.callcenter(style="height:100%;")
-    div.subcenter(style="padding-top:20%;")
-      div.ui.piled.segment.centered(style="background: rgba(255, 255, 255, .5);")
-        h1 #{title}
-        p Welcome to #{title}
-        h1
-          a.ui.secondary.button(href='/login') Login
+  body
+    div.callcenter(style="height:100%;")
+      div.subcenter(style="padding-top:20%;")
+        div.ui.piled.segment.centered(style="background: rgba(255, 255, 255, .5);")
+          h1 #{title}
+          p Welcome to #{title}
+          h1
+            a.ui.secondary.button(href='/login') Login
