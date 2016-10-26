@@ -17,6 +17,9 @@ var app = express();
 var bodyParser = require('body-parser'); // for reading POSTed form data into `req.body`
 var expressSession = require('express-session');
 var cookieParser = require('cookie-parser'); // the session is stored in a cookie, so we use this to parse it
+var fileUpload = require('express-fileupload'); // To handle files uploads
+//var csv = require('csv'); //CSV generation, parsing, transformation and serialization
+
 
 // must use cookieParser before expressSession
 app.use(cookieParser());
@@ -26,27 +29,7 @@ app.use(expressSession({secret:'somesecrettokenhere'}));
 
 app.use(bodyParser());
 
-/* testeo session */
-/*
-app.get('/sessionTest', function(req, res){
-    var html = '<form action="" method="post">' +
-        'Your name: <input type="text" name="userName"><br>' +
-        '<button type="submit">Submit</button>' +
-        '</form>';
-    if (req.session.userName) {
-        html += '<br>Your username from your session is: ' + req.session.userName;
-    }
-    res.send(html);
-});
-
-app.post('/sessionTest', function(req, res){
-    req.session.userName = req.body.userName;
-    res.redirect('/sessionTest');
-});
-*/
-//fin testeo
-
-
+app.use(fileUpload());
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -73,12 +56,21 @@ app.post('/', index.log_out);
 app.get('/login', login.loginInterface);
 app.post('/login', login.connect);
 
-app.get('/users', user.userInterface);
+app.get('/user', user.userInterface);
+app.post('/user', user.processForm);
+
+app.get('/user/modificarDatos', user.changePassInterface);
 
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
 app.get('/admin/crearProyecto', admin.createProyectInterface);
+
+app.get('/admin/crearEncuestador', admin.createUserInterface);
+
+app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
+
+app.get('/admin/subirCSV', admin.uploadCSVInterface);
 
 // 404 error handler
 app.use(function(req, res){

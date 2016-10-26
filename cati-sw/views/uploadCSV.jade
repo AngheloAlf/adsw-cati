@@ -1,0 +1,31 @@
+//
+   Created by Anghelo on 22-10-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido admin #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/admin') Volver al menú
+    div
+        form(action='/admin', method='POST' encType="multipart/form-data")
+            h2 Subir bd contactos
+            label Seleccione proyecto asociado
+            br
+            select#uploadProject(name='uploadProject', required='')
+                each project in projectList
+                    option(value=project.id_project, id="project" + project.id_project) #{project.name}
+            br
+            label CSV de contactos
+            br
+            input#uploadContacts(type='file', name='uploadContacts', required='')
+            br
+            br
+            button(name='submitButton', value='uploadCSV') Subir contactos
+            br

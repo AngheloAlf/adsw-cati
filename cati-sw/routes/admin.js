@@ -11,58 +11,76 @@ function adminInterface(req, res){
         res.redirect('/login');
     }
 }
-
-//
-//TODO: show if rut already exists, show if successful, show if error
-function createAccount(req, res){
-    var common = require("../public/javascript/common");
-
-    var name = req.body.interName;
-    var rut = req.body.interRut;
-    var pass = req.body.interPass;
-    var pass2 = req.body.interPass2;
-    var email = req.body.interMail;
-
-    if(common.testAscii(name) && common.validateRut(rut) && common.validatePass(pass) && common.validatePass(pass2) && common.validateMail(email)){
-        if(pass == pass2){
-            var User = require('../models/user');
-
-            User.createUser(name, rut, pass, email);
-        }
-        else{
-            //TODO: show error - pass doesn't match
-
-        }
-    }
-    else{
-        //TODO: show error - invalid characters
-
-    }
-}
+exports.adminInterface = adminInterface;
 
 
 //admin form handler
 exports.processForm = function (req, res){
 
     if(req.session.userData && req.session.userData.admin) { //If admin is connected
-        if (req.body.submitButton == "createInter") { //Create interviewer
-            createAccount(req, res);
+        var User = require('../models/user.js');
+        var Project = require('../models/project.js');
+        var Contact = require('../models/contact.js');
+        var parse = require('csv-parse/lib/sync');
+
+        if(req.body.submitButton == "createInter"){ //Create interviewer
+            User.createAccount(req, res);
+        }
+        else if(req.body.submitButton == "createProyect"){
+            Project.createNewProject(req, res);
+        }
+
+        else if(req.body.submitButton == "deleteInter"){
+            User.deleteUser(req.body.deleteUser);
+        }
+        else if(req.body.submitButton == "uploadCSV"){
+             var proyectCsv = req.files.uploadContacts;
+             var csvParsed = parse(proyectCsv.data.toString());
+
+             for(var i = 1; i < csvParsed.length; i++){
+                Contact.createContact(csvParsed[i][0], csvParsed[i][1], csvParsed[i][2], csvParsed[i][3], req.body.uploadProject);
+             }
         }
 
         //render the admin dash
-        adminInterface(req, res);
+        //adminInterface(req, res);
+        res.redirect('/admin');
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
     }
 };
 
-
-exports.adminInterface = adminInterface;
-
 exports.createProyectInterface = function(req, res){
     if(req.session.userData && req.session.userData.admin){ //If admin is connected
-        res.render('createProyectDash', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+        res.render('createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};
+
+exports.createUserInterface = function(req, res){
+    if(req.session.userData && req.session.userData.admin){ //If admin is connected
+        res.render('createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};
+
+exports.deleteUserInterface = function(req, res){
+    if(req.session.userData && req.session.userData.admin){ //If admin is connected
+        res.render('deleteUser', { title: 'CATI - Admin - Eliminar Encuestador', nombre: req.session.userData.userName, userList: req.session.users});
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};
+
+exports.uploadCSVInterface = function(req, res){
+    if(req.session.userData && req.session.userData.admin){ //If admin is connected
+        res.render('uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
     }
     else{//else, redirects to the login interface
         res.redirect('/login');

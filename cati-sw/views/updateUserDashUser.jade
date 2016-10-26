@@ -1,0 +1,35 @@
+//
+   Created by Anghelo on 20-10-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido #{nombre}
+
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/user') Volver al menú
+    div
+        form(action='/user', method='POST')
+            h2 Cambiar mi contraseña
+            label Ingrese su contraseña actual
+            br
+            input#interOldPass(type='password', name='interOldPass', required='')
+            br
+            br
+            label Ingrese su nueva contraseña
+            br
+            input#interNewPass(type='password', name='interNewPass', required='')
+            br
+            label Repita su contraseña
+            br
+            input#interNewPass2(type='password', name='interNewPass2', required='')
+            br
+            br
+            button(name='submitButton', value='changePass') Cambiar mi contraseña
+            br

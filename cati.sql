@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-10-08 11:45:10
+Date: 2016-10-22 13:06:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,7 @@ INSERT INTO `admin` VALUES ('2', 'Mono', '19306593-7', '456', 'mono@mono.mono');
 DROP TABLE IF EXISTS `call`;
 CREATE TABLE `call` (
   `id_call` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   `duration` int(10) unsigned NOT NULL,
   `id_user` int(10) unsigned NOT NULL COMMENT 'interviewer',
   `id_contact` int(10) unsigned NOT NULL COMMENT 'interviewee',
@@ -65,11 +65,13 @@ CREATE TABLE `client` (
   `name` varchar(63) NOT NULL,
   `email` varchar(63) NOT NULL,
   PRIMARY KEY (`id_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of client
 -- ----------------------------
+INSERT INTO `client` VALUES ('1', 'CLIENTE 1', 'cliente@empresa.pais');
+INSERT INTO `client` VALUES ('2', 'CLIENTE 2', 'cliente2@empresa2.pais2');
 
 -- ----------------------------
 -- Table structure for contact
@@ -79,18 +81,24 @@ CREATE TABLE `contact` (
   `id_contact` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
-  `number` int(11) NOT NULL,
-  `email` varchar(255) NOT NULL,
+  `number` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `id_project` int(10) unsigned NOT NULL,
-  `state` varchar(255) NOT NULL,
+  `state` varchar(255) DEFAULT 'No llamado',
   PRIMARY KEY (`id_contact`),
   KEY `id_project` (`id_project`),
   CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`id_project`) REFERENCES `project` (`id_project`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of contact
 -- ----------------------------
+INSERT INTO `contact` VALUES ('1', 'juan', 'ximenes', '56538253', null, '8', 'si');
+INSERT INTO `contact` VALUES ('2', 'marcelo', 'treimun', '74362822', null, '8', 'si');
+INSERT INTO `contact` VALUES ('3', 'pedro', 'hernandez', '53323857', null, '8', 'no');
+INSERT INTO `contact` VALUES ('4', 'juan', 'duarte', '76453857', null, '8', 'no');
+INSERT INTO `contact` VALUES ('5', 'pablo', 'ibarra', '63535869', null, '8', 'si');
+INSERT INTO `contact` VALUES ('6', 'gabriela', 'perez', '76453987', null, '8', 'si');
 
 -- ----------------------------
 -- Table structure for project
@@ -99,18 +107,20 @@ DROP TABLE IF EXISTS `project`;
 CREATE TABLE `project` (
   `id_project` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
-  `finish_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `start_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `finish_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_client` int(10) unsigned NOT NULL,
   `url_survey` varchar(255) NOT NULL,
   PRIMARY KEY (`id_project`),
   KEY `id_client` (`id_client`),
   CONSTRAINT `project_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project
 -- ----------------------------
+INSERT INTO `project` VALUES ('7', 'test1', '2222-02-02 00:00:00', '3333-02-20 00:00:00', '1', 'asdasd');
+INSERT INTO `project` VALUES ('8', 'asdfdsf', '2222-02-02 00:00:00', '3333-02-02 00:00:00', '1', 'asdasd');
 
 -- ----------------------------
 -- Table structure for user
@@ -123,7 +133,7 @@ CREATE TABLE `user` (
   `pass` varchar(63) NOT NULL,
   `email` varchar(127) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -132,3 +142,4 @@ INSERT INTO `user` VALUES ('1', 'Anghelo', '19125145-8', 'Anghelo95', 'angheloal
 INSERT INTO `user` VALUES ('2', 'Ignacio', '19306593-7', '123', 'maill@mail.mail');
 INSERT INTO `user` VALUES ('4', 'Alf', '19125145-8', 'Clave', 'mail@mail.com');
 INSERT INTO `user` VALUES ('5', 'hola', '18275030-1', 'chao', 'a@a.c');
+INSERT INTO `user` VALUES ('7', 'ejemplo', '1-9', '123', 'a@a.a');
