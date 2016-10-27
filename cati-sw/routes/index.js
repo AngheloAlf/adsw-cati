@@ -15,3 +15,13 @@ exports.log_out = function(req, res){
     }
     res.redirect('/');
 };
+
+
+exports.verificateLogin = function(req, res, admin, jadeName, jadeData){
+    if(req.session.userData && (req.session.userData.admin == admin)){ //If user is connected
+        res.render(jadeName, jadeData);
+    }
+    else{//else, redirects to the login interface
+        res.redirect('/login');
+    }
+};

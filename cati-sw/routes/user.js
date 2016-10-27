@@ -1,12 +1,15 @@
 
+var index = require('../routes/index');
+
 //user interface
 exports.userInterface = function(req, res){
-    if(req.session.userData && !req.session.userData.admin){ //If user is connected
+    /*if(req.session.userData && !req.session.userData.admin){ //If user is connected
         res.render('userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
-    }
+    }*/
+    index.verificateLogin(req, res, false, 'userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
 };
 
 //user form handler
@@ -30,10 +33,11 @@ exports.processForm = function(req, res){
 };
 
 exports.changePassInterface = function(req, res){
-    if(req.session.userData && !req.session.userData.admin){ //If user is connected
+    /*if(req.session.userData && !req.session.userData.admin){ //If user is connected
         res.render('updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
-    }
+    }*/
+    index.verificateLogin(req, res, false, 'updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
 };
