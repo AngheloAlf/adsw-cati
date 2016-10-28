@@ -63,3 +63,44 @@ exports.createNewProject = function(req, res){
         return false;
     }
 };
+
+exports.sendProjectById = function(req, res, id_project){
+    projectVar = new Project();
+    var where = "id_project='" + id_project + "'";
+
+    projectVar.find('all', {where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){
+            // Show not found
+        }
+        else {//login user
+            res.send('{"projectData": [{"id_project": "' + rows[0].id_project + '", "name": "' + rows[0].name + '", "start_date": "' + rows[0].start_date + '", "finish_date": "' + rows[0].finish_date + '", "id_client": "' + rows[0].id_client + '", "url_survey": "' + rows[0].url_survey + '"}]}');
+        }
+    });
+};
+
+exports.sendAllProjects = function(req, res){
+    projectVar = new Project();
+    projectVar.find('all', {}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){
+            // Show not found
+        }
+        else {//login user
+            var response = '{"projectsData": [';
+            for(var i = 0; i < rows.length; i++){
+                if(i>0){
+                    response += ', ';
+                }
+                response += '"id_project": "' + rows[i].id_project + '", "name": "' + rows[i].name + '", "start_date": "' + rows[i].start_date + '", "finish_date": "' + rows[i].finish_date + '", "id_client": "' + rows[i].id_client + '", "url_survey": "' + rows[i].url_survey + '"}';
+            }
+            response += ']}';
+            res.send(response);
+        }
+    });
+};
+
