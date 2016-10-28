@@ -4,44 +4,45 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin') Volver al menú
-    div
-        form(action='/admin', method='POST' encType="multipart/form-data")
-            h2 Crear Proyecto
-            label Nombre de Proyecto
+    body
+        div(style='text-align: center;')
             br
-            input#proyectName(type='text', name='proyectName', required='')
+            p Bienvenido admin #{nombre}
             br
-            label Fecha de inicio
             br
-            input#proyectStart(type='date', name='proyectStart', required='')
+            form(action='/', method='POST')
+                button(name='submitButton', value='log_out') Cerrar sesión
             br
-            label Fecha de termino
-            br
-            input#proyectEnd(type='date', name='proyectEnd', required='')
-            br
-            label Cliente
-            br
-            select#proyectClient(name='proyectClient', required='')
-                each client in clientsList
-                    option(value=client.id_client, id="client"+client.id_client) #{client.name}
-            br
-            label Enlace a la encuesta
-            br
-            input#proyectUrl(type='text', name='proyectUrl', required='')
-            br
-            //label CSV de contactos
-            //br
-            //input#proyectCsv(type='file', name='proyectCsv', required='')
-            //br
-            br
-            button(name='submitButton', value='createProyect') Crear proyecto
-            br
+
+        div
+            form(action='', method='POST')
+                h2 Crear Proyecto
+                label Nombre de Proyecto
+                br
+                input#proyectName(type='text', name='proyectName', required='')
+                br
+                label Fecha de inicio
+                br
+                input#proyectStart(type='date', name='proyectStart', required='')
+                br
+                label Fecha de termino
+                br
+                input#proyectEnd(type='date', name='proyectEnd', required='')
+                br
+                label Cliente
+                br
+                select#proyectClient(name='proyectClient', required='')
+                    each client in clientsList
+                        option(value=client.id_client, id="client"+client.id_client) #{client.name}
+                br
+                label Enlace a la encuesta
+                br
+                input#proyectMail(type='text', name='proyectMail', required='')
+                br
+                label CSV de contactos
+                br
+                input#proyectCsv(type='file', name='proyectCsv', required='')
+                br
+                br
+                button(name='submitButton', value='createInter') Crear proyecto
+                br

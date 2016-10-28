@@ -6,22 +6,21 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin/crearEncuestador') Crear encuestador
-        br
-        a(href='/admin/verEncuestador') Ver encuestadores
-        br
-        a(href='/admin/eliminarEncuestador') Eliminar encuestador
-        br
-        a(href='/admin/crearProyecto') Crear proyecto
-        br
-        a(href='/admin/subirCSV') Cargar bd de contactos
-        br
+    body
+        div(style='text-align: center;')
+            br
+            p Bienvenido admin #{nombre}
+            br
+            br
+            form(action='/', method='POST')
+                button(name='submitButton', value='log_out') Cerrar sesión
+            br
+            a(href='/admin/crearEncuestador') Crear encuestador
+            br
+            a(href='/admin/eliminarEncuestador') Eliminar encuestador
+            br
+            a(href='/admin/crearProyecto') Crear proyecto
+            br
+            a(href='/admin/subirCSV') Cargar bd de contactos
+            br
 

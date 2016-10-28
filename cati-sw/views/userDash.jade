@@ -5,12 +5,10 @@
 extends layout
 
 block content
-    br
-    p Bienvenido #{nombre}
-    br
-    br
-    form(action='/', method='POST')
-        button(name='submitButton', value='log_out') Cerrar sesión
-    br
-    a(href='/user/modificarDatos') Cambiar mi contraseña
-    br
+    body
+        br
+        p Bienvenido #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
