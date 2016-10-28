@@ -9,7 +9,12 @@ exports.userInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, false, 'userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
+    //index.verificateLogin(req, res, false, 'userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
+
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('userDash', { title: 'CATI - Encuestador', nombre: req.session.userData.userName });
+    })
+
 };
 
 //user form handler
@@ -39,5 +44,10 @@ exports.changePassInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, false, 'updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
+    //index.verificateLogin(req, res, false, 'updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
+
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
+    })
+
 };

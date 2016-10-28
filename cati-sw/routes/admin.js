@@ -4,7 +4,7 @@
 
 var index = require('../routes/index');
 
-//users interface
+//admin interface
 function adminInterface(req, res){
     /*if(req.session.userData && req.session.userData.admin){ //If admin is connected
         res.render('adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
@@ -12,7 +12,10 @@ function adminInterface(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, true, 'adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+    //index.verificateLogin(req, res, true, 'adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+    });
 }
 exports.adminInterface = adminInterface;
 
@@ -24,7 +27,10 @@ exports.createProyectInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, true, 'createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+    //index.verificateLogin(req, res, true, 'createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+    });
 };
 
 exports.createUserInterface = function(req, res){
@@ -34,7 +40,10 @@ exports.createUserInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, true, 'createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+    //index.verificateLogin(req, res, true, 'createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+    });
 };
 
 exports.deleteUserInterface = function(req, res){
@@ -44,7 +53,10 @@ exports.deleteUserInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, true, 'deleteUser', { title: 'CATI - Admin - Eliminar Encuestador', nombre: req.session.userData.userName, userList: req.session.users});
+    //index.verificateLogin(req, res, true, 'deleteUser', { title: 'CATI - Admin - Eliminar Encuestador', nombre: req.session.userData.userName, userList: req.session.users});
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('deleteUser', { title: 'CATI - Admin - Eliminar Encuestador', nombre: req.session.userData.userName, userList: req.session.users});
+    });
 };
 
 exports.uploadCSVInterface = function(req, res){
@@ -54,11 +66,17 @@ exports.uploadCSVInterface = function(req, res){
     else{//else, redirects to the login interface
         res.redirect('/login');
     }*/
-    index.verificateLogin(req, res, true, 'uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
+    //index.verificateLogin(req, res, true, 'uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
+    })
 };
 
 exports.readUsersInterface = function(req, res){
-    index.verificateLogin(req, res, true, 'readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName});
+    //index.verificateLogin(req, res, true, 'readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName});
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName});
+    })
 };
 /*
 exports.showUserInterface = function(req, res){
