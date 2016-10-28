@@ -58,7 +58,7 @@ exports.uploadCSVInterface = function(req, res){
 };
 
 exports.readUsersInterface = function(req, res){
-    index.verificateLogin(req, res, true, 'readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName, usersList: req.session.users});
+    index.verificateLogin(req, res, true, 'readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName});
 };
 /*
 exports.showUserInterface = function(req, res){

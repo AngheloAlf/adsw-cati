@@ -4,18 +4,6 @@
 extends layout
 
 block content
-    script.
-        var app = angular.module('getUserTable', []);
-        app.controller('getUserTableCtrl', function ($scope, $http) {
-            $scope.getSelectedUser = function (){
-                var userID = document.getElementById("readUser").value;
-                console.log("/angular/user/" + userID)
-                $http.get("/angular/user/" + userID)
-                        .then(function (response) {
-                            $scope.userGetData = response.data.userData;
-                        });
-            }
-        });
     div(style='text-align: center;')
         br
         p Bienvenido admin #{nombre}
@@ -28,17 +16,15 @@ block content
 
     div(ng-app='getUserTable', ng-controller='getUserTableCtrl')
         form(action='/admin', method='POST')
-            //button(value='readInter') Ver este encuestador
             br
             h2 Ver encuestadores
             label Seleccione encuestador
             br
-            select#readUser(name='readUser', required='')
-                each user in usersList
-                    option(value=user.id_user, id="user" + user.id_user) #{user.name}
+            select#readUser(name='readUser', required='', ng-model="selectedUser", ng-options="user.name for user in usersList")
+                //option(value='{{user.id_user}}') {{user.name}}
             br
             br
-            .ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
+            //.ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
             br
 
             label Ingrese su contraseña actual
@@ -54,10 +40,27 @@ block content
                 th Nombre del encuestador
                 th Rut del encuestador
                 th e-Mail del encuestador
-            tr(ng-repeat='data in userGetData')
-                td {{ data.id_user }}
-                td {{ data.name }}
-                td {{ data.rut }}
-                td {{ data.email }}
+            tr
+                td {{ selectedUser.id_user }}
+                td {{ selectedUser.name }}
+                td {{ selectedUser.rut }}
+                td {{ selectedUser.email }}
 
-
+    script.
+        var app = angular.module('getUserTable', []);
+        app.controller('getUserTableCtrl', function ($scope, $http) {
+            //$scope.usersList = {"usersData": [{"id_user": "1", "name": "Anghelo", "rut": "19125145-8", "email": "angheloalf95@gmail.com"}, {"id_user": "2", "name": "Ignacio", "rut": "19306593-7", "email": "maill@mail.mail"}, {"id_user": "4", "name": "Alf", "rut": "19125145-8", "email": "mail@mail.com"}]}.usersData;
+            $http.get("/angular/users")
+                .then(function (response){
+                    console.log("la wea weon qlo");
+                    console.log(response.data.usersData);
+                    $scope.usersList = response.data.usersData;
+                });
+            /*$scope.getSelectedUser = function () {
+                var userID = document.getElementById("readUser").value;
+                $http.get("/angular/user/" + userID)
+                    .then(function (response) {
+                        $scope.userGetData = response.data.userData;
+                    });
+            };*/
+        });

@@ -151,6 +151,9 @@ exports.sendAllUsers = function(req, res){
         else {//login user
             var response = '{"usersData": [';
             for(var i = 0; i < rows.length; i++){
+                if(i>0){
+                    response += ', ';
+                }
                 response += '{"id_user": "' + rows[i].id_user + '", "name": "' + rows[i].name + '", "rut": "' + rows[i].rut + '", "email": "' + rows[i].email + '"}';
             }
             response += ']}';
