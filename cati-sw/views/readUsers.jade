@@ -27,18 +27,26 @@ block content
         a(href='/admin') Volver al menú
 
     div(ng-app='getUserTable', ng-controller='getUserTableCtrl')
-        //form(action='/admin', method='POST')
-        h2 Ver encuestadores
-        label Seleccione encuestador
-        br
-        select#readUser(name='readUser', required='')
-            each user in usersList
-                option(value=user.id_user, id="user" + user.id_user) #{user.name}
-        br
-        br
-        button(name='submitButton', value='readInter' ng-click='getSelectedUser()') Ver este encuestador
-        //button(value='readInter') Ver este encuestador
-        br
+        form(action='/admin', method='POST')
+            //button(value='readInter') Ver este encuestador
+            br
+            h2 Ver encuestadores
+            label Seleccione encuestador
+            br
+            select#readUser(name='readUser', required='')
+                each user in usersList
+                    option(value=user.id_user, id="user" + user.id_user) #{user.name}
+            br
+            br
+            .ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
+            br
+
+            label Ingrese su contraseña actual
+            br
+            input#userDeletePass(type='password', name='userDeletePass', required='')
+            br
+            button(name='submitButton', value='deleteInter') Eliminar encuestador
+
         br
         table
             tr

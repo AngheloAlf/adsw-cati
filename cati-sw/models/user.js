@@ -138,3 +138,23 @@ exports.sendUserById = function(req, res, id_user){
         }
     });
 };
+
+exports.sendAllUsers = function(req, res){
+    userVar = new User();
+    userVar.find('all', {fields: ["id_user", "name", "rut", "email"]}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){ //User and pass conbination not found on user db
+            // Show not found
+        }
+        else {//login user
+            var response = '{"usersData": [';
+            for(var i = 0; i < rows.length; i++){
+                response += '{"id_user": "' + rows[i].id_user + '", "name": "' + rows[i].name + '", "rut": "' + rows[i].rut + '", "email": "' + rows[i].email + '"}';
+            }
+            response += ']}';
+            res.send(response);
+        }
+    });
+};

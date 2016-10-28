@@ -71,6 +71,7 @@ exports.processForm = function (req, res){
         var redirectToAdmin = true;
 
         var User = require('../models/user.js');
+        var Admin = require('../models/admin.js');
         var Project = require('../models/project.js');
         var Contact = require('../models/contact.js');
         var parse = require('csv-parse/lib/sync');
@@ -81,9 +82,9 @@ exports.processForm = function (req, res){
         else if(req.body.submitButton == "createProyect"){
             Project.createNewProject(req, res);
         }
-
         else if(req.body.submitButton == "deleteInter"){
-            User.deleteUser(req.body.deleteUser);
+            Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
+            User.getAllUsers(req);
         }
         else if(req.body.submitButton == "uploadCSV"){
              var proyectCsv = req.files.uploadContacts;

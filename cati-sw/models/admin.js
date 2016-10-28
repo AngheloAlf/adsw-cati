@@ -24,12 +24,31 @@ function getAdmin(req, res, rut, pass){
         }
         else{//login admin
             req.session.userData = {userID: rows[0].id_admin, userRut: rut, userName: rows[0].name, admin: 1};
-
-
             res.redirect('/admin');
         }
     });
 }
+
+exports.deleteUser = function(userId, adminId, adminPass){
+    var adminvar = new Admin;
+    var where = "id_admin='" + adminId + "' AND pass='" + adminPass + "'";
+
+    adminvar.find('all', {where: where}, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){ //User and pass conbination not found on admin db
+            //req.session.accountNotFound = 1;
+            //res.redirect("/login");
+        }
+        else{//login admin
+            //req.session.userData = {userID: rows[0].id_admin, userRut: rut, userName: rows[0].name, admin: 1};
+            //res.redirect('/admin');
+            var User = require("../models/user");
+            User.deleteUser(userId);
+        }
+    });
+};
 
 exports.Admin = Admin;
 exports.getAdmin = getAdmin;

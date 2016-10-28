@@ -76,6 +76,7 @@ app.get('/admin/subirCSV', admin.uploadCSVInterface);
 app.get('/admin/verEncuestador', admin.readUsersInterface);
 
 app.get('/angular/user/:idUser', angularJS.getUserData);
+app.get('/angular/users', angularJS.getUsers);
 
 // 404 error handler
 app.use(function(req, res){

@@ -6,3 +6,8 @@ exports.getUserData = function(req, res){
     var User = require('../models/user.js');
     User.sendUserById(req, res, req.params.idUser);
 };
+
+exports.getUsers = function(req, res){
+    var User = require('../models/user.js');
+    User.sendAllUsers(req, res);
+};
