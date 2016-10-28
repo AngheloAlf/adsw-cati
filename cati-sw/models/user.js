@@ -121,3 +121,20 @@ exports.deleteUser = function(id_user){
     });
     userVar.save()
 };
+
+exports.sendUserById = function(req, res, id_user){
+    userVar = new User();
+    var where = "id_user='" + id_user + "'";
+
+    userVar.find('all', {fields: ["id_user", "name", "rut", "email"], where: where}, function (err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){ //User and pass conbination not found on user db
+            // Show not found
+        }
+        else {//login user
+            res.send('{"userData": [{"id_user": "' + rows[0].id_user + '", "name": "' + rows[0].name + '", "rut": "' + rows[0].rut + '", "email": "' + rows[0].email + '"}]}');
+        }
+    });
+};

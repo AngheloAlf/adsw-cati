@@ -1,0 +1,55 @@
+//
+   Created by Anghelo on 27-10-2016.
+
+extends layout
+
+block content
+    script.
+        var app = angular.module('getUserTable', []);
+        app.controller('getUserTableCtrl', function ($scope, $http) {
+            $scope.getSelectedUser = function (){
+                var userID = document.getElementById("readUser").value;
+                console.log("/angular/user/" + userID)
+                $http.get("/angular/user/" + userID)
+                        .then(function (response) {
+                            $scope.userGetData = response.data.userData;
+                        });
+            }
+        });
+    div(style='text-align: center;')
+        br
+        p Bienvenido admin #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/admin') Volver al menú
+
+    div(ng-app='getUserTable', ng-controller='getUserTableCtrl')
+        //form(action='/admin', method='POST')
+        h2 Ver encuestadores
+        label Seleccione encuestador
+        br
+        select#readUser(name='readUser', required='')
+            each user in usersList
+                option(value=user.id_user, id="user" + user.id_user) #{user.name}
+        br
+        br
+        button(name='submitButton', value='readInter' ng-click='getSelectedUser()') Ver este encuestador
+        //button(value='readInter') Ver este encuestador
+        br
+        br
+        table
+            tr
+                th ID encuestador
+                th Nombre del encuestador
+                th Rut del encuestador
+                th e-Mail del encuestador
+            tr(ng-repeat='data in userGetData')
+                td {{ data.id_user }}
+                td {{ data.name }}
+                td {{ data.rut }}
+                td {{ data.email }}
+
+

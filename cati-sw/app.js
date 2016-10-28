@@ -7,6 +7,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
+var angularJS = require('./routes/angular');
 
 var http = require('http');
 var path = require('path');
@@ -71,6 +72,10 @@ app.get('/admin/crearEncuestador', admin.createUserInterface);
 app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
 
 app.get('/admin/subirCSV', admin.uploadCSVInterface);
+
+app.get('/admin/verEncuestador', admin.readUsersInterface);
+
+app.get('/angular/user/:idUser', angularJS.getUserData);
 
 // 404 error handler
 app.use(function(req, res){

@@ -6,6 +6,7 @@
     "start": "npm install && node app.js"
   },
   "dependencies": {
+    "angular": "^1.5.8",
     "backbone": "^1.3.3",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
