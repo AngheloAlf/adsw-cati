@@ -19,7 +19,6 @@ function adminInterface(req, res){
 }
 exports.adminInterface = adminInterface;
 
-
 exports.createProyectInterface = function(req, res){
     /*if(req.session.userData && req.session.userData.admin){ //If admin is connected
         res.render('createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
@@ -78,14 +77,10 @@ exports.readUsersInterface = function(req, res){
         res.render('readUsers', { title: 'CATI - Admin - Ver encuestadores', nombre: req.session.userData.userName});
     })
 };
-/*
-exports.showUserInterface = function(req, res){
-    res.send(req.params.idUser);
-}*/
 
 //admin form handler
 exports.processForm = function (req, res){
-    if(req.session.userData && req.session.userData.admin) { //If admin is connected
+    /*if(req.session.userData && req.session.userData.admin) { //If admin is connected
         var redirectToAdmin = true;
 
         var User = require('../models/user.js');
@@ -116,12 +111,48 @@ exports.processForm = function (req, res){
             redirectToAdmin = false;
             res.redirect('/admin/verEncuestador/'+req.body.readUser);
         }*/
-
+/*
         if(redirectToAdmin){
             res.redirect('/admin');
         }
     }
     else{//else, redirects to the login interface
         res.redirect('/login');
-    }
+    }*/
+    index.verificateLogin(req, res, true, function(req, res){
+        var redirectToAdmin = true;
+
+        var User = require('../models/user.js');
+        var Admin = require('../models/admin.js');
+        var Project = require('../models/project.js');
+        var Contact = require('../models/contact.js');
+        var parse = require('csv-parse/lib/sync');
+
+        if(req.body.submitButton == "createInter"){ //Create interviewer
+            User.createAccount(req, res);
+        }
+        else if(req.body.submitButton == "createProyect"){
+            Project.createNewProject(req, res);
+        }
+        else if(req.body.submitButton == "deleteInter"){
+            Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
+            User.getAllUsers(req);
+        }
+        else if(req.body.submitButton == "uploadCSV"){
+            var proyectCsv = req.files.uploadContacts;
+            var csvParsed = parse(proyectCsv.data.toString());
+
+            for(var i = 1; i < csvParsed.length; i++){
+                Contact.createContact(csvParsed[i][0], csvParsed[i][1], csvParsed[i][2], csvParsed[i][3], req.body.uploadProject);
+            }
+        }
+        /*else if(req.body.submitButton == "readInter"){
+            redirectToAdmin = false;
+            res.redirect('/admin/verEncuestador/'+req.body.readUser);
+        }*/
+
+        if(redirectToAdmin){
+            res.redirect('/admin');
+        }
+    });
 };
