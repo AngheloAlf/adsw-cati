@@ -95,7 +95,7 @@ exports.sendAllProjects = function(req, res){
                 if(i>0){
                     response += ', ';
                 }
-                response += '"id_project": "' + rows[i].id_project + '", "name": "' + rows[i].name + '", "start_date": "' + rows[i].start_date + '", "finish_date": "' + rows[i].finish_date + '", "id_client": "' + rows[i].id_client + '", "url_survey": "' + rows[i].url_survey + '"}';
+                response += '{"id_project": "' + rows[i].id_project + '", "name": "' + rows[i].name + '", "start_date": "' + rows[i].start_date + '", "finish_date": "' + rows[i].finish_date + '", "id_client": "' + rows[i].id_client + '", "url_survey": "' + rows[i].url_survey + '"}';
             }
             response += ']}';
             res.send(response);

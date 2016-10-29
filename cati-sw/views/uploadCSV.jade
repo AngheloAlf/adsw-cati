@@ -13,14 +13,15 @@ block content
             button(name='submitButton', value='log_out') Cerrar sesión
         br
         a(href='/admin') Volver al menú
-    div
+    div(ng-app='getProject', ng-controller='getProjectCtrl')
         form(action='/admin', method='POST' encType="multipart/form-data")
             h2 Subir bd contactos
             label Seleccione proyecto asociado
             br
             select#uploadProject(name='uploadProject', required='')
-                each project in projectList
-                    option(value=project.id_project, id="project" + project.id_project) #{project.name}
+                option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
+                //each project in projectList
+                //    option(value=project.id_project, id="project" + project.id_project) #{project.name}
             br
             label CSV de contactos
             br
@@ -29,3 +30,5 @@ block content
             br
             button(name='submitButton', value='uploadCSV') Subir contactos
             br
+
+    script(src='/angular/uploadCSV.js')

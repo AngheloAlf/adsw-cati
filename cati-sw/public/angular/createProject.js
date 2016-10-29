@@ -9,6 +9,7 @@ app.controller('getClientCtrl', function ($scope, $http) {
     $http.get("/angular/client")
         .then(function(response){
             $scope.clientsList = response.data.clientsData;
-        });
+        }
+    );
 });
 
