@@ -13,9 +13,10 @@ block content
             form(action='/', method='POST')
                 button(name='submitButton', value='log_out') Cerrar sesión
             br
+            a(href='/admin') Volver al menú
 
-        div
-            form(action='', method='POST')
+        div(ng-app='getClient', ng-controller='getClientCtrl')
+            form(action='/admin', method='POST')
                 h2 Crear Proyecto
                 label Nombre de Proyecto
                 br
@@ -32,17 +33,21 @@ block content
                 label Cliente
                 br
                 select#proyectClient(name='proyectClient', required='')
-                    each client in clientsList
-                        option(value=client.id_client, id="client"+client.id_client) #{client.name}
+                    option(ng-repeat="client in clientsList" value="{{client.id_client}}") {{client.name}}
+                //select#proyectClient(name='proyectClient', required='', ng-model="selectedUser", ng-options="user.name for user in usersList")
+                //    each client in clientsList
+                //        option(value=client.id_client, id="client"+client.id_client) #{client.name}
                 br
                 label Enlace a la encuesta
                 br
-                input#proyectMail(type='text', name='proyectMail', required='')
+                input#proyectUrl(type='text', name='proyectUrl', required='')
                 br
-                label CSV de contactos
+                //label CSV de contactos
+                //br
+                //input#proyectCsv(type='file', name='proyectCsv', required='')
                 br
-                input#proyectCsv(type='file', name='proyectCsv', required='')
                 br
+                button(name='submitButton', value='createProyect') Crear proyecto
                 br
-                button(name='submitButton', value='createInter') Crear proyecto
-                br
+
+    script(src='/angular/createProject.js')

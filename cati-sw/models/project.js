@@ -51,15 +51,14 @@ exports.createNewProject = function(req, res){
     var endDate = req.body.proyectEnd;
     var client = req.body.proyectClient;
     var url = req.body.proyectUrl;
-
-    console.log(startDate);
-
+    
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
-        Project.newProject(req, res, name, startDate, endDate, client, url);
+        newProject(req, res, name, startDate, endDate, client, url);
         return true;
     }
     else{
         //TODO: show validation error;
+        console.log("validation error");
         return false;
     }
 };
