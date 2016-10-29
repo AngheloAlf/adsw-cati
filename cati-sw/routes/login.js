@@ -40,8 +40,8 @@ exports.connect = function(req, res){
             User.getUser(req, res, rut, pass);
             //User.getAllUsers(req, res);
 
-            var Client = require('../models/client');
-            Client.getAllClient(req, res);
+            //var Client = require('../models/client');
+            //Client.getAllClient(req, res);
 
             var Project = require('../models/project');
             Project.getAllProjects(req, res);

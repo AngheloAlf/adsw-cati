@@ -28,7 +28,7 @@ exports.createProyectInterface = function(req, res){
     }*/
     //index.verificateLogin(req, res, true, 'createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
     index.verificateLogin(req, res, true, function(req, res){
-        res.render('createProyectDashAdmin', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName, clientsList: req.session.clients});
+        res.render('createProyect', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName});
     });
 };
 

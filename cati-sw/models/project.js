@@ -51,7 +51,7 @@ exports.createNewProject = function(req, res){
     var endDate = req.body.proyectEnd;
     var client = req.body.proyectClient;
     var url = req.body.proyectUrl;
-    
+
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
         newProject(req, res, name, startDate, endDate, client, url);
         return true;
