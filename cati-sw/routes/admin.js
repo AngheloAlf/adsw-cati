@@ -67,7 +67,7 @@ exports.uploadCSVInterface = function(req, res){
     }*/
     //index.verificateLogin(req, res, true, 'uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
     index.verificateLogin(req, res, true, function(req, res){
-        res.render('uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName, projectList: req.session.AllProjects});
+        res.render('uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName});
     })
 };
 
@@ -132,7 +132,7 @@ exports.processForm = function (req, res){
             User.createAccount(req, res);
         }
         else if(req.body.submitButton == "createProyect"){
-            Project.createNewProject(req, res);
+            Project.createNewProject(req);
         }
         else if(req.body.submitButton == "deleteInter"){
             console.log(req.body.readUser);

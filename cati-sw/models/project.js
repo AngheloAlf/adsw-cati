@@ -9,7 +9,7 @@ var Project = Db.extend({
     tableName: "project"
 });
 
-function newProject(req, res, name, startdate, enddate, clientId, url){
+function newProject(name, startdate, enddate, clientId, url){
     var pro = new Project({
         name: name,
         start_date: startdate,
@@ -18,7 +18,6 @@ function newProject(req, res, name, startdate, enddate, clientId, url){
         url_survey: url
     });
     pro.save();
-    getAllProjects(req, res);
 }
 exports.newProject = newProject;
 
@@ -35,15 +34,14 @@ exports.getProject = function(res, req, proid){
     });
 };
 
-function getAllProjects(req){
+exports.getAllProjects = function(req){
     var pro = new Project;
     pro.find('all', {}, function(err,rows){
         req.session.AllProjects = rows;
     });
-}
-exports.getAllProjects = getAllProjects;
+};
 
-exports.createNewProject = function(req, res){
+exports.createNewProject = function(req){
     var common = require("../public/javascript/common");
 
     var name = req.body.proyectName;
@@ -53,7 +51,7 @@ exports.createNewProject = function(req, res){
     var url = req.body.proyectUrl;
 
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
-        newProject(req, res, name, startDate, endDate, client, url);
+        newProject(name, startDate, endDate, client, url);
         return true;
     }
     else{
