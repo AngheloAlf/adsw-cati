@@ -135,6 +135,7 @@ exports.processForm = function (req, res){
             Project.createNewProject(req, res);
         }
         else if(req.body.submitButton == "deleteInter"){
+            console.log(req.body.readUser);
             Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
             User.getAllUsers(req);
         }

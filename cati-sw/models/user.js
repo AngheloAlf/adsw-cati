@@ -40,7 +40,6 @@ function createUser(name, rut, pass, email){
         if(rows[0] === undefined){ //This rut does not exist in the users db
             var user = new User({name: name, rut: rut, pass: pass, email: email});
             user.save();
-            getAllUsers(req, res);
         }
         else{
             //TODO: show error - rut exists in the db
@@ -108,6 +107,7 @@ exports.getAllUsers = getAllUsers;
 exports.deleteUser = function(id_user){
     var userVar = new User();
     var where = "id_user='" + id_user + "'";
+    console.log(id_user);
     userVar.remove(where, function(err, rows){
         if(err){
             throw err;
