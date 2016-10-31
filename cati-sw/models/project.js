@@ -71,6 +71,8 @@ exports.sendProjectById = function(req, res, id_project){
         }
         if(rows[0] === undefined){
             // Show not found
+
+            res.redirect("/login");
         }
         else {//login user
             res.send('{"projectData": [{"id_project": "' + rows[0].id_project + '", "name": "' + rows[0].name + '", "start_date": "' + rows[0].start_date + '", "finish_date": "' + rows[0].finish_date + '", "id_client": "' + rows[0].id_client + '", "url_survey": "' + rows[0].url_survey + '"}]}');
@@ -85,6 +87,8 @@ exports.sendAllProjects = function(req, res){
             throw err;
         }
         if(rows[0] === undefined){
+
+            res.redirect("/login");
             // Show not found
         }
         else {//login user

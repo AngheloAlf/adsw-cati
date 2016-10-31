@@ -5,19 +5,11 @@
 var index = require('../routes/index');
 
 //admin interface
-function adminInterface(req, res){
-    /*if(req.session.userData && req.session.userData.admin){ //If admin is connected
-        res.render('adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
-    }
-    else{//else, redirects to the login interface
-        res.redirect('/login');
-    }*/
-    //index.verificateLogin(req, res, true, 'adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
+exports.adminInterface = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
         res.render('adminDash', { title: 'CATI - Administrador', nombre: req.session.userData.userName });
     });
-}
-exports.adminInterface = adminInterface;
+};
 
 exports.createProyectInterface = function(req, res){
     /*if(req.session.userData && req.session.userData.admin){ //If admin is connected
@@ -135,7 +127,6 @@ exports.processForm = function (req, res){
             Project.createNewProject(req);
         }
         else if(req.body.submitButton == "deleteInter"){
-            console.log(req.body.readUser);
             Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
             User.getAllUsers(req);
         }

@@ -14,7 +14,6 @@ exports.loginInterface = function(req, res){
     }
     else{ //else, redirects to the log-in interface
         var errorMessage = '';
-        console.log(req.session.accountNotFound);
         if(req.session.accountNotFound){
             errorMessage = 'Usuario o clave incorrectos';
             req.session.accountNotFound = undefined;

@@ -48,6 +48,7 @@ exports.sendClientById = function(req, res, id_client){
         }
         if(rows[0] === undefined){
             // Show not found
+            res.redirect("/login");
         }
         else {//login user
             res.send('{"clientData": [{"id_client": "' + rows[0].id_client + '", "name": "' + rows[0].name + '", "email": "' + rows[0].email + '"}]}');
@@ -63,6 +64,7 @@ exports.sendAllClients = function(req, res){
         }
         if(rows[0] === undefined){
             // Show not found
+            res.redirect("/login");
         }
         else {//login user
             var response = '{"clientsData": [';

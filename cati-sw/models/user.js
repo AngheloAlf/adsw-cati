@@ -29,11 +29,11 @@ exports.getUser = function(req, res, rut, pass){
     });
 };
 
-function createUser(name, rut, pass, email){
+function createUser(req, res, name, rut, pass, email){
     var where = "rut='" + rut + "'";
     var userVar = new User();
 
-    userVar.find('all', {where: where}, function (err, rows) {
+    userVar.find('all', {where: where}, function (err, rows){
         if(err){
             throw err;
         }
@@ -50,7 +50,7 @@ exports.createUser = createUser;
 
 //
 //TODO: show if rut already exists, show if successful, show if error
-function createAccount(req){
+function createAccount(req, res){
     var common = require("../public/javascript/common");
 
     var name = req.body.interName;
@@ -61,7 +61,7 @@ function createAccount(req){
 
     if(common.testAscii(name) && common.validateRut(rut) && common.validatePass(pass) && common.validatePass(pass2) && common.validateMail(email)){
         if(pass == pass2){
-            createUser(name, rut, pass, email);
+            createUser(req, res, name, rut, pass, email);
         }
         else{
             //TODO: show error - pass doesn't match
@@ -69,7 +69,6 @@ function createAccount(req){
     }
     else{
         //TODO: show error - invalid characters
-
     }
 }
 exports.createAccount = createAccount;
@@ -130,8 +129,8 @@ exports.sendUserById = function(req, res, id_user){
         if(err){
             throw err;
         }
-        if(rows[0] === undefined){ //User and pass conbination not found on user db
-            // Show not found
+        if(rows[0] === undefined){ //Not found
+            res.redirect("/login");
         }
         else {//login user
             res.send('{"userData": [{"id_user": "' + rows[0].id_user + '", "name": "' + rows[0].name + '", "rut": "' + rows[0].rut + '", "email": "' + rows[0].email + '"}]}');
@@ -146,7 +145,7 @@ exports.sendAllUsers = function(req, res){
             throw err;
         }
         if(rows[0] === undefined){ //User and pass conbination not found on user db
-            // Show not found
+            res.redirect("/login");
         }
         else {//login user
             var response = '{"usersData": [';
