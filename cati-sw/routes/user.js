@@ -26,7 +26,7 @@ exports.changePassInterface = function(req, res){
      }*/
     //index.verificateLogin(req, res, false, 'updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
     index.verificateLogin(req, res, false, function(req, res){
-        res.render('updateUserDashUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
+        res.render('updateUser', { title: 'CATI - Encuestador - Cambiar contraseña', nombre: req.session.userData.userName });
     });
 };
 

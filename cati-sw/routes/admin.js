@@ -33,7 +33,7 @@ exports.createUserInterface = function(req, res){
     }*/
     //index.verificateLogin(req, res, true, 'createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
     index.verificateLogin(req, res, true, function(req, res){
-        res.render('createUserDashAdmin', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
+        res.render('createUser', { title: 'CATI - Admin - Crear Encuestador', nombre: req.session.userData.userName});
     });
 };
 

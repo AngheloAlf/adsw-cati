@@ -7,7 +7,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
-var angularJS = require('./routes/angular');
+var angularJS = require('./routes/angularCtrl');
 
 var http = require('http');
 var path = require('path');
