@@ -22,8 +22,6 @@ block content
             br
             select#readUser(name='readUser', required='')
                 option(ng-repeat="user in usersList" value="{{user.id_user}}") {{user.name}}
-            //select#readUser(name='readUser', required='', ng-model="selectedUser", ng-options="user.name for user in usersList")
-                //option(value='{{user.id_user}}') {{user.name}}
             br
             br
 
@@ -34,7 +32,7 @@ block content
             .ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
             br
 
-            label Ingrese su contraseña actual
+            label Ingrese su contraseña
             br
             input#userDeletePass(type='password', name='userDeletePass')
             br
