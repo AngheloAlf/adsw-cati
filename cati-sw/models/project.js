@@ -71,7 +71,6 @@ exports.sendProjectById = function(req, res, id_project){
         }
         if(rows[0] === undefined){
             // Show not found
-
             res.redirect("/login");
         }
         else {//login user

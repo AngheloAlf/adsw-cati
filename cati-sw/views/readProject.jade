@@ -1,0 +1,59 @@
+//
+   Created by Anghelo on 02-11-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido admin #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/admin') Volver al menú
+        br
+        p [WIP]
+
+    div(ng-app='getProyect', ng-controller='getProjectCtrl')
+        form(action='/admin', method='POST')
+            br
+            h2 Ver Proyectos
+            label Seleccione proyecto
+            br
+            select#readProject(name='readProject', required='')
+                option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
+            br
+            br
+
+            .ui.fluid.large.teal.submit.button(ng-click='getSelectedProject()') Ver proyecto seleccionado
+            br
+
+            label Ingrese su contraseña
+            br
+            input#projectDeletePass(type='password', name='projectDeletePass', required='')
+            br
+            br
+            //TODO: delete project
+            button(name='submitButton', value='deleteProject') [WIP] Eliminar proyecto
+
+        br
+        table
+            //TODO: get client name instead of their id
+            tr
+                th ID proyecto
+                th Nombre del proyecto
+                th Fecha de inicio
+                th Fecha de termino
+                th ID de cliente
+                th Enlace a la encuesta asociada
+            tr(ng-repeat="project in projectGetData")
+                td {{ project.id_project }}
+                td {{ project.name }}
+                td {{ project.start_date }}
+                td {{ project.finish_date }}
+                td {{ project.id_client }}
+                td {{ project.url_survey }}
+
+    script(src='/angular/readProject.js')

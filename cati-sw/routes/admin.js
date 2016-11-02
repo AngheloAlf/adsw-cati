@@ -47,6 +47,12 @@ exports.userStadisticsInterface = function(req, res){
     })
 };
 
+exports.readProjectInterface = function(req, res){
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('readProject', { title: 'CATI - Admin - Ver proyecto', nombre: req.session.userData.userName});
+    })
+};
+
 //admin form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
