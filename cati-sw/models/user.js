@@ -106,7 +106,6 @@ exports.getAllUsers = getAllUsers;
 exports.deleteUser = function(id_user){
     var userVar = new User();
     var where = "id_user='" + id_user + "'";
-    console.log(id_user);
     userVar.remove(where, function(err, rows){
         if(err){
             throw err;

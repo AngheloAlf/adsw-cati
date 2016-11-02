@@ -21,10 +21,22 @@ function newProject(name, startdate, enddate, clientId, url){
 }
 exports.newProject = newProject;
 
+//TODO: ask what to do with the foreigns keys (contact table)
 exports.delProject = function(proid){
-    var pro = new Project();
-    pro.remove("id_project=" + proid);
-    pro.save();
+    var projectvar = new Project();
+    var where = "id_project='" + proid+"'";
+    projectvar.remove(where, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.affectedRows == 1){
+            //TODO: show project deleted
+        }
+        else{
+            //TODO: show error
+        }
+    });
+    projectvar.save();
 };
 
 exports.getProject = function(res, req, proid){

@@ -72,7 +72,6 @@ exports.processForm = function(req, res){
         }
         else if(req.body.submitButton == "deleteInter"){
             Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
-            User.getAllUsers(req);
         }
         else if(req.body.submitButton == "uploadCSV"){
             var proyectCsv = req.files.uploadContacts;
@@ -86,8 +85,9 @@ exports.processForm = function(req, res){
             redirectToAdmin = false;
             res.redirect("/admin/verEncuestador/" + req.body.readUser);
         }
-
-
+        else if(req.body.submitButton == "deleteProject"){
+            Admin.deleteProject(req.body.readProject, req.session.userData.userID, req.body.projectDeletePass);
+        }
 
         if(redirectToAdmin){
             res.redirect('/admin');

@@ -37,7 +37,7 @@ exports.deleteUser = function(userId, adminId, adminPass){
         if(err){
             throw err;
         }
-        if(rows[0] === undefined){ //User and pass conbination not found on admin db
+        if(rows[0] === undefined){ //Bad password
             //req.session.accountNotFound = 1;
             //res.redirect("/login");
         }
@@ -46,6 +46,25 @@ exports.deleteUser = function(userId, adminId, adminPass){
             //res.redirect('/admin');
             var User = require("../models/user");
             User.deleteUser(userId);
+        }
+    });
+};
+
+exports.deleteProject = function(projectId, adminId, adminPass){
+    var adminvar = new Admin;
+    var where = "id_admin='" + adminId + "' AND pass='" + adminPass + "'";
+
+    adminvar.find('all', {where: where}, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows[0] === undefined){ //Bad passwor
+            //req.session.accountNotFound = 1;
+            //res.redirect("/login");
+        }
+        else{//login admin
+            var Project = require("../models/project");
+            Project.delProject(projectId);
         }
     });
 };
