@@ -11,9 +11,9 @@ exports.adminInterface = function(req, res){
     });
 };
 
-exports.createProyectInterface = function(req, res){
+exports.createProjectInterface = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
-        res.render('createProyect', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName});
+        res.render('createProject', { title: 'CATI - Admin - Crear Proyecto', nombre: req.session.userData.userName});
     });
 };
 
@@ -67,15 +67,15 @@ exports.processForm = function(req, res){
         if(req.body.submitButton == "createInter"){ //Create interviewer
             User.createAccount(req, res);
         }
-        else if(req.body.submitButton == "createProyect"){
+        else if(req.body.submitButton == "createProject"){
             Project.createNewProject(req);
         }
         else if(req.body.submitButton == "deleteInter"){
             Admin.deleteUser(req.body.readUser, req.session.userData.userID, req.body.userDeletePass);
         }
         else if(req.body.submitButton == "uploadCSV"){
-            var proyectCsv = req.files.uploadContacts;
-            var csvParsed = parse(proyectCsv.data.toString());
+            var projectCsv = req.files.uploadContacts;
+            var csvParsed = parse(projectCsv.data.toString());
 
             for(var i = 1; i < csvParsed.length; i++){
                 Contact.createContact(csvParsed[i][0], csvParsed[i][1], csvParsed[i][2], csvParsed[i][3], req.body.uploadProject);

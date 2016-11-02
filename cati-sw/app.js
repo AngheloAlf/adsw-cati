@@ -65,7 +65,7 @@ app.get('/user/modificarDatos', user.changePassInterface);
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
-app.get('/admin/crearProyecto', admin.createProyectInterface);
+app.get('/admin/crearProyecto', admin.createProjectInterface);
 
 app.get('/admin/crearEncuestador', admin.createUserInterface);
 

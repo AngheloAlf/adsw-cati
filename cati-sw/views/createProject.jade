@@ -20,34 +20,27 @@ block content
                 h2 Crear Proyecto
                 label Nombre de Proyecto
                 br
-                input#proyectName(type='text', name='proyectName', required='')
+                input#proyectName(type='text', name='projectName', required='')
                 br
                 label Fecha de inicio
                 br
-                input#proyectStart(type='date', name='proyectStart', required='')
+                input#proyectStart(type='date', name='projectStart', required='')
                 br
                 label Fecha de termino
                 br
-                input#proyectEnd(type='date', name='proyectEnd', required='')
+                input#proyectEnd(type='date', name='projectEnd', required='')
                 br
                 label Cliente
                 br
-                select#proyectClient(name='proyectClient', required='')
+                select#proyectClient(name='projectClient', required='')
                     option(ng-repeat="client in clientsList" value="{{client.id_client}}") {{client.name}}
-                //select#proyectClient(name='proyectClient', required='', ng-model="selectedUser", ng-options="user.name for user in usersList")
-                //    each client in clientsList
-                //        option(value=client.id_client, id="client"+client.id_client) #{client.name}
                 br
                 label Enlace a la encuesta
                 br
-                input#proyectUrl(type='text', name='proyectUrl', required='')
-                br
-                //label CSV de contactos
-                //br
-                //input#proyectCsv(type='file', name='proyectCsv', required='')
+                input#proyectUrl(type='text', name='projectUrl', required='')
                 br
                 br
-                button(name='submitButton', value='createProyect') Crear proyecto
+                button(name='submitButton', value='createProject') Crear proyecto
                 br
 
     script(src='/angular/createProject.js')

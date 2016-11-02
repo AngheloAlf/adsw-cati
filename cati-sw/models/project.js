@@ -56,11 +56,11 @@ exports.getAllProjects = function(req){
 exports.createNewProject = function(req){
     var common = require("../public/javascript/common");
 
-    var name = req.body.proyectName;
-    var startDate = req.body.proyectStart;
-    var endDate = req.body.proyectEnd;
-    var client = req.body.proyectClient;
-    var url = req.body.proyectUrl;
+    var name = req.body.projectName;
+    var startDate = req.body.projectStart;
+    var endDate = req.body.projectEnd;
+    var client = req.body.projectClient;
+    var url = req.body.projectUrl;
 
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
         newProject(name, startDate, endDate, client, url);
