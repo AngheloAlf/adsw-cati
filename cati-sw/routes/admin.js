@@ -41,6 +41,12 @@ exports.readUsersInterface = function(req, res){
     })
 };
 
+exports.userStadisticsInterface = function(req, res){
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('userStadistics', { title: 'CATI - Admin - Estadisticas', nombre: req.session.userData.userName});
+    })
+};
+
 //admin form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
@@ -70,6 +76,12 @@ exports.processForm = function(req, res){
                 Contact.createContact(csvParsed[i][0], csvParsed[i][1], csvParsed[i][2], csvParsed[i][3], req.body.uploadProject);
             }
         }
+        else if(req.body.submitButton == "stadisticsInter"){
+            redirectToAdmin = false;
+            res.redirect("/admin/verEncuestador/" + req.body.readUser);
+        }
+
+
 
         if(redirectToAdmin){
             res.redirect('/admin');

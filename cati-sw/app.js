@@ -74,6 +74,7 @@ app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
 app.get('/admin/subirCSV', admin.uploadCSVInterface);
 
 app.get('/admin/verEncuestador', admin.readUsersInterface);
+app.get('/admin/verEncuestador/:idUser', admin.userStadisticsInterface);
 
 app.get('/angular/user', angularJS.getUsers);
 app.get('/angular/user/:idUser', angularJS.getUserData);
@@ -83,6 +84,11 @@ app.get('/angular/client/:idClient',  angularJS.getClientData);
 
 app.get('/angular/project',  angularJS.getProjects);
 app.get('/angular/project/:idProject',  angularJS.getProjectData);
+
+
+//req.body.id == $_POST["id"]
+//req.query.id == $_GET["id"]
+
 
 // 404 error handler
 app.use(function(req, res){

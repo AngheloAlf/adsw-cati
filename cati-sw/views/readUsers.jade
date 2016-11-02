@@ -26,12 +26,18 @@ block content
                 //option(value='{{user.id_user}}') {{user.name}}
             br
             br
+
+            button(name='submitButton', value='stadisticsInter') [WIP] Generar estadisticas
+            br
+            br
+
             .ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
             br
 
             label Ingrese su contraseña actual
             br
-            input#userDeletePass(type='password', name='userDeletePass', required='')
+            input#userDeletePass(type='password', name='userDeletePass')
+            br
             br
             button(name='submitButton', value='deleteInter') Eliminar encuestador
 
