@@ -17,6 +17,7 @@ app.controller('getProjectCtrl', function ($scope, $http) {
             .then(function(response){
                 console.log(response.data.projectData);
                 $scope.projectGetData = response.data.projectData;
-            });
+            }
+        );
     };
 });

@@ -15,6 +15,12 @@ exports.changePassInterface = function(req, res){
     });
 };
 
+exports.callInterface = function(req, res){
+    index.verificateLogin(req, res, false, function(req, res){
+        res.render('call', { title: 'CATI - Encuestador - Llamar', nombre: req.session.userData.userName });
+    });
+};
+
 //user form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, false, function(req, res){

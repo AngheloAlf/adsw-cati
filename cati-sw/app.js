@@ -62,6 +62,8 @@ app.post('/user', user.processForm);
 
 app.get('/user/modificarDatos', user.changePassInterface);
 
+app.get('/user/call', user.callInterface);
+
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 

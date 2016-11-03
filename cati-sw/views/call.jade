@@ -1,0 +1,21 @@
+//
+   Created by Anghelo on 02-11-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido #{nombre}
+
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/user') Volver al menú
+    div
+        a(href='skype:+56978471063?call') Llamar a +569 7847 1063
+
+
+
