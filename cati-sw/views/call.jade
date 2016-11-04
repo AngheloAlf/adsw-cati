@@ -14,8 +14,12 @@ block content
             button(name='submitButton', value='log_out') Cerrar sesión
         br
         a(href='/user') Volver al menú
-    div
-        a(href='skype:+56978471063?call') Llamar a +569 7847 1063
+    div(ng-app=' ')
+        p Ingrese numero a llamar:
+        input#numberInput(type='tel', ng-model='numberToCall')
 
-
-
+        br
+        br
+        //a(href='skype:{{numberToCall}}?call') Etiqueta skype. Llamar a {{numberToCall}}
+        br
+        a(href='tel:{{numberToCall}}') Etiqueta tel. Llamar a {{numberToCall}}
