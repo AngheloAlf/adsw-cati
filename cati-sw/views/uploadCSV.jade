@@ -4,31 +4,31 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin') Volver al menú
-    div(ng-app='getProject', ng-controller='getProjectCtrl')
-        form(action='/admin', method='POST' encType="multipart/form-data")
-            h2 Subir bd contactos
-            label Seleccione proyecto asociado
+    body.callcenter
+        div.subcenter
             br
-            select#uploadProject(name='uploadProject', required='')
-                option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
-                //each project in projectList
-                //    option(value=project.id_project, id="project" + project.id_project) #{project.name}
-            br
-            label CSV de contactos
-            br
-            input#uploadContacts(type='file', name='uploadContacts', required='')
-            br
-            br
-            button(name='submitButton', value='uploadCSV') Subir contactos
-            br
+            div.ui.centered.segment.transwhite
+                h1 Admin #{nombre} - Subir BD
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+            div.ui.centered.segment.transgray(ng-app='getProject', ng-controller='getProjectCtrl')
+                h3 Subir Base de Datos de contactos
+                form(action='/admin', method='POST' encType="multipart/form-data")
+                    div.ui.label Seleccione proyecto asociado
+                    br
+                    select#uploadProject(name='uploadProject', required='')
+                        option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
+                        //each project in projectList
+                        //    option(value=project.id_project, id="project" + project.id_project) #{project.name}
+                    br
+                    div.ui.label CSV de contactos
+                    br
+                    input#uploadContacts(type='file', name='uploadContacts', required='')
+                    br
+                    br
+                    button.ui.primary.button(name='submitButton', value='uploadCSV') Subir contactos
+                    br
 
-    script(src='/angular/uploadCSV.js')
+        script(src='/angular/uploadCSV.js')

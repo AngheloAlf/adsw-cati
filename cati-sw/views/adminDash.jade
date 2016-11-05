@@ -6,24 +6,23 @@
 extends layout
 
 block content
-    body
-        div(style='text-align: center;')
+    body.callcenter
+        div.subcenter.centered
             br
-            p Bienvenido admin #{nombre}
-            br
-            br
-            form(action='/', method='POST')
-                button(name='submitButton', value='log_out') Cerrar sesión
-            br
-            a(href='/admin/crearEncuestador') Crear encuestador
-            br
-            //a(href='/admin/eliminarEncuestador') Eliminar encuestador
-            //br
-            a(href='/admin/verEncuestador') Ver/Eliminar encuestadores
-            br
-            a(href='/admin/crearProyecto') Crear proyecto
-            br
-            a(href='/admin/subirCSV') Cargar bd de contactos
-            br
-            a(href='/admin/verProyecto') [WIP] Ver proyecto
-            br
+            div.ui.segment.transwhite
+                h1 Bienvenido admin #{nombre}
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+            div.ui.segment.stacked.transwhite
+                h3 Herramientas
+                a.ui.big.button.circular.red.w35(href='/admin/crearEncuestador') Crear encuestador
+                a.ui.big.button.circular.blue.w35(href='/admin/eliminarEncuestador') Eliminar encuestador
+                br
+                br
+                a.ui.big.button.circular.green.w35(href='/admin/verEncuestador') Ver/Eliminar encuestadores
+                a.ui.big.button.circular.purple.w35(href='/admin/crearProyecto') Crear proyecto
+                br
+                br
+                a.ui.big.button.circular.orange.w35(href='/admin/subirCSV') Cargar bd de contactos
+                a.ui.big.button.circular.yellow.w35(href='/admin/verProyecto') [WIP] Ver proyecto
+

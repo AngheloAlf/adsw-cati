@@ -4,6 +4,7 @@
 
 //Log-in interface
 exports.loginInterface = function(req, res){
+    //req.session.userData={userID:'1',userRut:'123-6',userName:'mono',admin:1};
     if(req.session.userData){ //If user has logged in, this redirect to the users page
         if(!req.session.userData.admin){
             res.redirect('/users');

@@ -5,14 +5,17 @@
 extends layout
 
 block content
-    body
-        br
-        p Bienvenido #{nombre}
-        br
-        a(href='/user/modificarDatos') Cambiar contraseña
-        br
-        a(href='/user/call') Testing llamadas
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
+    body.callcenter
+        div.subcenter
+            br
+            div.ui.centered.segment.transwhite
+                h1 Bienvenido #{nombre}
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+            div.ui.centered.stacked.segment.transwhite
+                h3 Herramientas
+                a.ui.big.button.circular.red.w35(href='/user/modificarDatos') Cambiar contraseña
+                a.ui.big.button.circular.orange.w35(href='/user/call') Testing llamadas
+            br
+
+

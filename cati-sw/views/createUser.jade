@@ -4,38 +4,40 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin') Volver al menú
-    div
-        form(action='/admin', method='POST')
-            h2 Crear encuestador
-            label Nombre
+    body.callcenter
+        div.subcenter
             br
-            input#interName(type='text', name='interName', required='')
-            br
-            label Rut
-            br
-            input#interRut(type='text', name='interRut', required='')
-            br
-            label Contraseña
-            br
-            input#interPass(type='password', name='interPass', required='')
-            br
-            label Repita Contraseña
-            br
-            input#interPass2(type='password', name='interPass2', required='')
-            br
-            label e-Mail
-            br
-            input#interMail(type='email', name='interMail', required='')
-            br
-            br
-            button(name='submitButton', value='createInter') Crear encuestador
-            br
+            div.ui.segment.centered.transwhite
+                h1 Bienvenido admin #{nombre}
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+            div.ui.segment.centered.transgray
+                h2 Crear encuestador
+                form(action='/admin', method='POST')
+                    div.ui.labeled.input.w35
+                        div.ui.label Nombre
+                        input#interName(type='text', name='interName', required='')
+                    i.icon.category
+                    div.ui.labeled.input.w35
+                        div.ui.label Rut
+                        input#interRut(type='text', name='interRut', required='')
+                    br
+                    br
+                    div.ui.labeled.input.w35
+                        div.ui.label Contraseña
+                        input#interPass(type='password', name='interPass', required='')
+                    i.icon.category
+                    div.ui.labeled.input.w35
+                        div.ui.label Repetir C.
+                        input#interPass2(type='password', name='interPass2', required='')
+                    br
+                    br
+                    div.ui.labeled.input.w35
+                        div.ui.label E-Mail
+                        input#interMail(type='email', name='interMail', required='')
+                    br
+                    br
+                    button.ui.secondary.button(name='submitButton', value='createInter') Crear encuestador
+                    br
