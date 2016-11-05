@@ -4,22 +4,22 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido #{nombre}
+    body.callcenter
+        .subcenter
+            br
+            .ui.centered.stacked.transwhite.segment
+                h1 #{nombre} - Llamadas
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/user') Volver al menú
+                br
 
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/user') Volver al menú
-    div(ng-app=' ')
-        p Ingrese numero a llamar:
-        input#numberInput(type='tel', ng-model='numberToCall')
-
-        br
-        br
-        //a(href='skype:{{numberToCall}}?call') Etiqueta skype. Llamar a {{numberToCall}}
-        br
-        a(href='tel:{{numberToCall}}') Etiqueta tel. Llamar a {{numberToCall}}
+            div.ui.centered.stacked.transwhite.segment(ng-app=' ')
+                .ui.huge.labeled.input
+                    .ui.label Número:
+                    input.ui.input#numberInput(type='tel', ng-model='numberToCall')
+                br
+                br
+                //a.ui.huge.teal.button(href='skype:{{numberToCall}}?call') Etiqueta skype. Llamar a {{numberToCall}}
+                br
+                a.ui.huge.teal.button(href='tel:{{numberToCall}}') Etiqueta tel. Llamar a {{numberToCall}}

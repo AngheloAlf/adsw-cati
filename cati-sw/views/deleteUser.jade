@@ -4,24 +4,22 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin') Volver al menú
-    div
-        form(action='/admin', method='POST')
-            h2 Eliminar encuestador
-            label Seleccione encuestador
-            br
-            select#deleteUser(name='deleteUser', required='')
-                each user in userList
-                    option(value=user.id_user, id="client" + user.id_user) #{user.name}
-            br
-            br
-            button(name='submitButton', value='deleteInter') Eliminar encuestador
-            br
+    body.callcenter
+        .centered.subcenter
+            .ui.segmented.transwhite.segment
+                h1 Admin #{nombre} - Eliminar Usuario
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+            .ui.segmented.transgray.segment
+                h3 Eliminar encuestador
+                form(action='/admin', method='POST')
+                    .ui.label Seleccione encuestador
+                    select#deleteUser(name='deleteUser', required='')
+                        each user in userList
+                            option(value=user.id_user, id="client" + user.id_user) #{user.name}
+                    br
+                    br
+                    button.ui.big.teal.button(name='submitButton', value='deleteInter') Eliminar encuestador
+                    br

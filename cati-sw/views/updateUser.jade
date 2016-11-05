@@ -4,32 +4,30 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido #{nombre}
-
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/user') Volver al menú
-    div
-        form(action='/user', method='POST')
-            h2 Cambiar mi contraseña
-            label Ingrese su contraseña actual
+    body.callcenter
+        .subcenter
             br
-            input#interOldPass(type='password', name='interOldPass', required='')
-            br
-            br
-            label Ingrese su nueva contraseña
-            br
-            input#interNewPass(type='password', name='interNewPass', required='')
-            br
-            label Repita su contraseña
-            br
-            input#interNewPass2(type='password', name='interNewPass2', required='')
-            br
-            br
-            button(name='submitButton', value='changePass') Cambiar mi contraseña
-            br
+            .ui.centered.stacked.transwhite.segment
+                h1 #{nombre} - Editar Usuario
+                form(action='/', method='POST')
+                    button(name='submitButton', value='log_out') Cerrar sesión
+                    a(href='/user') Volver al menú
+                br
+            .ui.centered.stacked.transwhite.segment
+                form(action='/user', method='POST')
+                    h3 Cambiar mi contraseña
+                    .ui.labeled.input.w35
+                        .ui.label Contraseña Actual
+                        input.ui.input.transwhite#interOldPass(type='password', name='interOldPass', required='')
+                    br
+                    .ui.labeled.input.w35
+                        .ui.label Nueva Contraseña
+                        input.ui.input.transwhite#interNewPass(type='password', name='interNewPass', required='')
+                    br
+                    .ui.labeled.input.w35
+                        .ui.label Repetición Contraseña
+                        input.ui.input.transwhite#interNewPass2(type='password', name='interNewPass2', required='')
+                    br
+                    br
+                    button.ui.primary.button(name='submitButton', value='changePass') Cambiar mi contraseña
+                    br
