@@ -96,6 +96,32 @@ function testUrl(string){
     return pat.test(string);
 }
 
+function testEqualsPass(pass1, pass2){
+    return pass1 == pass2;
+}
+
+
+function fixNumber(number){
+    if(number.substring(0, 3) != "+56"){
+        if (number.lenght != 8) {//TODO: for some reason, this if is triggered when number.length == 8
+            console.log(number.lenght != 8);
+            console.log(number.length);
+            return "+56" + number;
+        } else {
+            return "+569" + number;
+        }
+    }
+    return number;
+}
+
+/*
+function validateCreateUser(){
+    var pass1 = document.getElementById("interPass").value;
+    var pass2 = document.getElementById("interPass2").value;
+    return testEqualsPass(pass1, pass2);
+}
+*/
+
 (function(exports){
     exports.validateRut = validateRut;
     exports.validatePass = validatePass;
@@ -105,4 +131,6 @@ function testUrl(string){
     exports.testDate = testDate;
     exports.testIsANumber = testIsANumber;
     exports.testUrl = testUrl;
+    exports.testEqualsPass = testEqualsPass;
+    exports.fixNumber = fixNumber;
 }(typeof exports === 'undefined' ? this.common = {} : exports));

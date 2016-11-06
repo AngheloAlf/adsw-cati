@@ -14,12 +14,19 @@ block content
                     a.ui.primary.button(href='/user') Volver al menú
                 br
 
-            div.ui.centered.stacked.transwhite.segment(ng-app=' ')
-                .ui.huge.labeled.input
-                    .ui.label Número:
-                    input.ui.input#numberInput(type='tel', ng-model='numberToCall')
+            div.ui.centered.stacked.transwhite.segment(ng-app='getContact', ng-controller='getContactCtrl')
+                //.ui.huge.labeled.input
+                //    .ui.label Número:
+                //    input.ui.input#numberInput(type='tel', ng-model='numberToCall')
+                .ui.label Seleccione contacto
+                select#numberCall(name='numberCall', required='', ng-change='putNumberToCall()')
+                    option(ng-repeat="contact in contactsList" value="{{contact.id_contact}}") {{contact.first_name}} {{contact.last_name}} {{contact.number}}
                 br
                 br
-                //a.ui.huge.teal.button(href='skype:{{numberToCall}}?call') Etiqueta skype. Llamar a {{numberToCall}}
                 br
-                a.ui.huge.teal.button(href='tel:{{numberToCall}}') Etiqueta tel. Llamar a {{numberToCall}}
+                a.ui.huge.teal.button#callButton(href='skype:+56?call') Llamar a
+                br
+                //a.ui.huge.teal.button(href='tel:+56{{numberToCall}}') Etiqueta tel. Llamar a +56{{numberToCall}}
+
+
+    script(src='/angular/call.js')

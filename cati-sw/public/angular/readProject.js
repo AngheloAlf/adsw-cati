@@ -12,10 +12,8 @@ app.controller('getProjectCtrl', function ($scope, $http) {
         );
     $scope.getSelectedProject = function(){
         var projectID = document.getElementById("readProject").value;
-        console.log(projectID);
         $http.get("/angular/project/" + projectID)
             .then(function(response){
-                console.log(response.data.projectData);
                 $scope.projectGetData = response.data.projectData;
             }
         );
