@@ -51,22 +51,23 @@ exports.deleteUser = function(userId, adminId, adminPass){
 };
 
 exports.deleteProject = function(projectId, adminId, adminPass){
-    var adminvar = new Admin;
+    var adminVar = new Admin;
     var where = "id_admin='" + adminId + "' AND pass='" + adminPass + "'";
 
-    adminvar.find('all', {where: where}, function(err, rows){
+    adminVar.find('all', {where: where}, function(err, rows){
         if(err){
             throw err;
         }
-        if(rows[0] === undefined){ //Bad passwor
-            //req.session.accountNotFound = 1;
-            //res.redirect("/login");
-        }
-        else{//login admin
+        if(rows.length == 1){ //Good password
             var Project = require("../models/project");
-            Project.delProject(projectId);
+            Project.hideProject(projectId);
+        }
+        else{ //Bad password
+            //TODO: show error
         }
     });
+
+
 };
 
 exports.Admin = Admin;

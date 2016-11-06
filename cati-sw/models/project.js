@@ -39,6 +39,23 @@ exports.delProject = function(proid){
     projectvar.save();
 };
 
+exports.hideProject = function(id_project){
+    var projectVar = new Project();
+    var sqlQuery = "UPDATE project SET deleted='1' WHERE id_project='" + id_project + "'";
+    projectVar.query(sqlQuery, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.changedRows > 0){
+            //TODO: message: deleted
+        }
+        else{
+            //TODO: message: not deleted
+        }
+    });
+    projectVar.save();
+};
+
 exports.getProject = function(res, req, proid){
     var pro = new Project;
     pro.find('all',{where:'id_project='+proid},function(err,rows){
@@ -74,8 +91,8 @@ exports.createNewProject = function(req){
 };
 
 exports.sendProjectById = function(req, res, id_project){
-    projectVar = new Project();
-    var where = "id_project='" + id_project + "'";
+    var projectVar = new Project();
+    var where = "deleted='0' AND id_project='" + id_project + "'";
 
     projectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -92,8 +109,10 @@ exports.sendProjectById = function(req, res, id_project){
 };
 
 exports.sendAllProjects = function(req, res){
-    projectVar = new Project();
-    projectVar.find('all', {}, function (err, rows){
+    var projectVar = new Project();
+    var where = "deleted='0'";
+
+    projectVar.find('all', {where: where}, function (err, rows){
         if(err){
             throw err;
         }
