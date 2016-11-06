@@ -71,8 +71,6 @@ app.get('/admin/crearProyecto', admin.createProjectInterface);
 
 app.get('/admin/crearEncuestador', admin.createUserInterface);
 
-app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
-
 app.get('/admin/subirCSV', admin.uploadCSVInterface);
 
 app.get('/admin/verEncuestador', admin.readUsersInterface);

@@ -23,12 +23,6 @@ exports.createUserInterface = function(req, res){
     });
 };
 
-exports.deleteUserInterface = function(req, res){
-    index.verificateLogin(req, res, true, function(req, res){
-        res.render('deleteUser', { title: 'CATI - Admin - Eliminar Encuestador', nombre: req.session.userData.userName, userList: req.session.users});
-    });
-};
-
 exports.uploadCSVInterface = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
         res.render('uploadCSV', { title: 'CATI - Admin - Subir contactos', nombre: req.session.userData.userName});
