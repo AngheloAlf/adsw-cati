@@ -48,7 +48,7 @@ exports.sendContactById = function(req, res, id_contact){
     var contactVar = new Contact();
     var where = "id_contact='" + id_contact + "'";
 
-    contactVar.find('all', {where: where}, function (err, rows){
+    contactVar.find('all', {where: where}, function(err, rows){
         if(err){
             throw err;
         }
@@ -60,4 +60,22 @@ exports.sendContactById = function(req, res, id_contact){
             res.redirect("/login");
         }
     });
+};
+
+exports.updateState = function(id_contact, newState){
+    var contactVar = new Contact();
+    var sqlQuery = "UPDATE contact SET state='" + newState + "' WHERE id_contact ='" + id_contact + "'";
+
+    contactVar.query(sqlQuery, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.changedRows > 0){
+            //TODO: message: state updated
+        }
+        else{
+            //TODO: message: state not updated
+        }
+    });
+    contactVar.save();
 };
