@@ -21,10 +21,39 @@ function newProject(name, startdate, enddate, clientId, url){
 }
 exports.newProject = newProject;
 
+//TODO: ask what to do with the foreigns keys (contact table)
 exports.delProject = function(proid){
-    var pro = new Project();
-    pro.remove("id_project=" + proid);
-    pro.save();
+    var projectvar = new Project();
+    var where = "id_project='" + proid+"'";
+    projectvar.remove(where, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.affectedRows == 1){
+            //TODO: show project deleted
+        }
+        else{
+            //TODO: show error
+        }
+    });
+    projectvar.save();
+};
+
+exports.hideProject = function(id_project){
+    var projectVar = new Project();
+    var sqlQuery = "UPDATE project SET deleted='1' WHERE id_project='" + id_project + "'";
+    projectVar.query(sqlQuery, function(err, rows){
+        if(err){
+            throw err;
+        }
+        if(rows.changedRows > 0){
+            //TODO: message: deleted
+        }
+        else{
+            //TODO: message: not deleted
+        }
+    });
+    projectVar.save();
 };
 
 exports.getProject = function(res, req, proid){
@@ -44,11 +73,11 @@ exports.getAllProjects = function(req){
 exports.createNewProject = function(req){
     var common = require("../public/javascript/common");
 
-    var name = req.body.proyectName;
-    var startDate = req.body.proyectStart;
-    var endDate = req.body.proyectEnd;
-    var client = req.body.proyectClient;
-    var url = req.body.proyectUrl;
+    var name = req.body.projectName;
+    var startDate = req.body.projectStart;
+    var endDate = req.body.projectEnd;
+    var client = req.body.projectClient;
+    var url = req.body.projectUrl;
 
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
         newProject(name, startDate, endDate, client, url);
@@ -62,8 +91,8 @@ exports.createNewProject = function(req){
 };
 
 exports.sendProjectById = function(req, res, id_project){
-    projectVar = new Project();
-    var where = "id_project='" + id_project + "'";
+    var projectVar = new Project();
+    var where = "deleted='0' AND id_project='" + id_project + "'";
 
     projectVar.find('all', {where: where}, function (err, rows){
         if(err){
@@ -71,6 +100,7 @@ exports.sendProjectById = function(req, res, id_project){
         }
         if(rows[0] === undefined){
             // Show not found
+            res.redirect("/login");
         }
         else {//login user
             res.send('{"projectData": [{"id_project": "' + rows[0].id_project + '", "name": "' + rows[0].name + '", "start_date": "' + rows[0].start_date + '", "finish_date": "' + rows[0].finish_date + '", "id_client": "' + rows[0].id_client + '", "url_survey": "' + rows[0].url_survey + '"}]}');
@@ -79,12 +109,16 @@ exports.sendProjectById = function(req, res, id_project){
 };
 
 exports.sendAllProjects = function(req, res){
-    projectVar = new Project();
-    projectVar.find('all', {}, function (err, rows){
+    var projectVar = new Project();
+    var where = "deleted='0'";
+
+    projectVar.find('all', {where: where}, function (err, rows){
         if(err){
             throw err;
         }
         if(rows[0] === undefined){
+
+            res.redirect("/login");
             // Show not found
         }
         else {//login user

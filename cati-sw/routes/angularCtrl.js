@@ -6,6 +6,7 @@ var index = require('../routes/index');
 var User = require('../models/user.js');
 var Client = require('../models/client.js');
 var Project = require('../models/project.js');
+var Contact = require('../models/contact.js');
 
 exports.getUsers = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
@@ -40,3 +41,14 @@ exports.getProjectData = function(req, res){
     });
 };
 
+
+exports.getContacts = function(req, res){
+    index.verificateLogin(req, res, false, function(req, res){
+        Contact.sendAllContacts(req, res);
+    });
+};
+exports.getContactsData = function(req, res){
+    index.verificateLogin(req, res, false, function(req, res){
+        Contact.sendContactById(req, res, req.params.idContact);
+    });
+};

@@ -4,9 +4,10 @@
 
 //Log-in interface
 exports.loginInterface = function(req, res){
+    //req.session.userData={userID:'1',userRut:'123-6',userName:'mono',admin:1};
     if(req.session.userData){ //If user has logged in, this redirect to the users page
         if(!req.session.userData.admin){
-            res.redirect('/users');
+            res.redirect('/user');
         }
         else{
             res.redirect('/admin');
@@ -14,7 +15,6 @@ exports.loginInterface = function(req, res){
     }
     else{ //else, redirects to the log-in interface
         var errorMessage = '';
-        console.log(req.session.accountNotFound);
         if(req.session.accountNotFound){
             errorMessage = 'Usuario o clave incorrectos';
             req.session.accountNotFound = undefined;
@@ -38,13 +38,6 @@ exports.connect = function(req, res){
         if(common.validateRut(rut) && common.validatePass(pass)){
             var User = require('../models/user');
             User.getUser(req, res, rut, pass);
-            //User.getAllUsers(req, res);
-
-            //var Client = require('../models/client');
-            //Client.getAllClient(req, res);
-
-            //var Project = require('../models/project');
-            //Project.getAllProjects(req, res);
         }
         else{ //Else, display an error in screen
             req.session.invalidRutPass = 1;

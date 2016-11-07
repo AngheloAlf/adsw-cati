@@ -1,0 +1,56 @@
+//
+   Created by Anghelo on 02-11-2016.
+
+extends layout
+
+block content
+    body.callcenter
+        .centered.subcenter
+            br
+            .ui.transwhite.segment
+                h1 Admin #{nombre} - Ver Proyectos
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+
+            div.transgray.segment(ng-app='getProyect', ng-controller='getProjectCtrl')
+                h3 Ver Proyectos
+                form(action='/admin', method='POST')
+                    br
+                    .ui.label Seleccione proyecto
+                    select#readProject(name='readProject', required='')
+                        option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
+                    br
+                    br
+
+                    .ui.huge.green.submit.button(ng-click='getSelectedProject()') Ver proyecto seleccionado
+                    br
+                    br
+                    .ui.labeled.input
+                        .ui.label Ingrese su contraseña para eliminar
+                        input.ui.input#projectDeletePass(type='password', name='projectDeletePass', required='')
+                    br
+                    br
+                    //TODO: delete project
+                    button.ui.big.red.submit.button(name='submitButton', value='deleteProject') Eliminar proyecto
+
+                br
+                table.ui.table
+                    //TODO: get client name instead of their id
+                    tr
+                        th ID proyecto
+                        th Nombre del proyecto
+                        th Fecha de inicio
+                        th Fecha de termino
+                        th ID de cliente
+                        th Enlace a la encuesta asociada
+                    tr(ng-repeat="project in projectGetData")
+                        td {{ project.id_project }}
+                        td {{ project.name }}
+                        td {{ project.start_date }}
+                        td {{ project.finish_date }}
+                        td {{ project.id_client }}
+                        td {{ project.url_survey }}
+                br
+    script(src='/angular/readProject.js')

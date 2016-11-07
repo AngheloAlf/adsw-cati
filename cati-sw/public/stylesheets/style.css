@@ -21,5 +21,13 @@ a {
   background-repeat: no-repeat;
 }
 .transwhite{
-  background:rgba(255,255,255,0.5);
+  background:rgba(255,255,255,0.5)!important;
+}
+
+.transgray{
+  background:rgba(200,200,200,0.5)!important;
+}
+
+.w35{
+  width:35%;
 }

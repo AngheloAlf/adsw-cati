@@ -1,0 +1,43 @@
+//
+   Created by Anghelo on 20-10-2016.
+
+extends layout
+
+block content
+    body.callcenter
+        div.subcenter
+            br
+            div.ui.segment.centered.transwhite
+                h1 Bienvenido admin #{nombre}
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+            div.ui.segment.centered.transgray
+                h2 Crear encuestador
+                form(action='/admin', method='POST')
+                    div.ui.labeled.input.w35
+                        div.ui.label Nombre
+                        input#interName(type='text', name='interName', required='')
+                    i.icon.category
+                    div.ui.labeled.input.w35
+                        div.ui.label Rut
+                        input#interRut(type='text', name='interRut', required='')
+                    br
+                    br
+                    div.ui.labeled.input.w35
+                        div.ui.label Contraseña
+                        input#interPass(type='password', name='interPass', required='')
+                    i.icon.category
+                    div.ui.labeled.input.w35
+                        div.ui.label Repetir C.
+                        input#interPass2(type='password', name='interPass2', required='')
+                    br
+                    br
+                    div.ui.labeled.input.w35
+                        div.ui.label E-Mail
+                        input#interMail(type='email', name='interMail', required='')
+                    br
+                    br
+                    button.ui.secondary.button(name='submitButton', value='createInter') Crear encuestador
+                    br

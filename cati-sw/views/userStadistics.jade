@@ -1,0 +1,18 @@
+//
+   Created by Anghelo on 02-11-2016.
+
+extends layout
+
+block content
+    div(style='text-align: center;')
+        br
+        p Bienvenido admin #{nombre}
+        br
+        br
+        form(action='/', method='POST')
+            button(name='submitButton', value='log_out') Cerrar sesión
+        br
+        a(href='/admin') Volver al menú
+
+    div
+        p Estadisticas

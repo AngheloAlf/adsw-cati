@@ -4,48 +4,50 @@
 extends layout
 
 block content
-    div(style='text-align: center;')
-        br
-        p Bienvenido admin #{nombre}
-        br
-        br
-        form(action='/', method='POST')
-            button(name='submitButton', value='log_out') Cerrar sesión
-        br
-        a(href='/admin') Volver al menú
+    body.callcenter
+        div.subcenter
+            br
+            div.ui.stacked.centered.transwhite.segment
+                h1 Admin #{nombre} - Vista de Encuestadores
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
 
-    div(ng-app='getUserTable', ng-controller='getUserTableCtrl')
-        form(action='/admin', method='POST')
-            br
-            h2 Ver encuestadores
-            label Seleccione encuestador
-            br
-            select#readUser(name='readUser', required='')
-                option(ng-repeat="user in usersList" value="{{user.id_user}}") {{user.name}}
-            //select#readUser(name='readUser', required='', ng-model="selectedUser", ng-options="user.name for user in usersList")
-                //option(value='{{user.id_user}}') {{user.name}}
-            br
-            br
-            .ui.fluid.large.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
-            br
 
-            label Ingrese su contraseña actual
-            br
-            input#userDeletePass(type='password', name='userDeletePass', required='')
-            br
-            button(name='submitButton', value='deleteInter') Eliminar encuestador
+            div.ui.stacked.centered.transgray.segment(ng-app='getUserTable', ng-controller='getUserTableCtrl')
+                form(action='/admin', method='POST')
+                    br
+                    h3 Ver encuestadores
+                    div.ui.label Seleccione encuestador
 
-        br
-        table
-            tr
-                th ID encuestador
-                th Nombre del encuestador
-                th Rut del encuestador
-                th e-Mail del encuestador
-            tr(ng-repeat="user in userGetData")
-                td {{ user.id_user }}
-                td {{ user.name }}
-                td {{ user.rut }}
-                td {{ user.email }}
+                    select#readUser(name='readUser', required='')
+                        option(ng-repeat="user in usersList" value="{{user.id_user}}") {{user.name}}
+                    br
+                    br
+
+                    button.ui.teal.button(name='submitButton', value='stadisticsInter') [WIP] Generar estadisticas
+                    .ui.teal.submit.button(ng-click='getSelectedUser()') Ver encuestador seleccionado
+                    br
+                    br
+                    div.ui.labeled.input
+                        div.ui.label.transwhite Ingrese su contraseña
+                        input.ui.input.transwhite#userDeletePass(type='password', name='userDeletePass')
+                    br
+                    br
+                    button.ui.teal.button(name='submitButton', value='deleteInter') Eliminar encuestador
+
+                br
+                table.ui.table
+                    tr
+                        th ID encuestador
+                        th Nombre del encuestador
+                        th Rut del encuestador
+                        th e-Mail del encuestador
+                    tr(ng-repeat="user in userGetData")
+                        td {{ user.id_user }}
+                        td {{ user.name }}
+                        td {{ user.rut }}
+                        td {{ user.email }}
 
     script(src='/angular/readUsers.js')

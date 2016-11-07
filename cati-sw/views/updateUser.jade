@@ -1,0 +1,33 @@
+//
+   Created by Anghelo on 20-10-2016.
+
+extends layout
+
+block content
+    body.callcenter
+        .subcenter
+            br
+            .ui.centered.stacked.transwhite.segment
+                h1 #{nombre} - Editar Usuario
+                form(action='/', method='POST')
+                    button(name='submitButton', value='log_out') Cerrar sesión
+                    a(href='/user') Volver al menú
+                br
+            .ui.centered.stacked.transwhite.segment
+                form(action='/user', method='POST')
+                    h3 Cambiar mi contraseña
+                    .ui.labeled.input.w35
+                        .ui.label Contraseña Actual
+                        input.ui.input.transwhite#interOldPass(type='password', name='interOldPass', required='')
+                    br
+                    .ui.labeled.input.w35
+                        .ui.label Nueva Contraseña
+                        input.ui.input.transwhite#interNewPass(type='password', name='interNewPass', required='')
+                    br
+                    .ui.labeled.input.w35
+                        .ui.label Repetición Contraseña
+                        input.ui.input.transwhite#interNewPass2(type='password', name='interNewPass2', required='')
+                    br
+                    br
+                    button.ui.primary.button(name='submitButton', value='changePass') Cambiar mi contraseña
+                    br

@@ -7,7 +7,7 @@ var index = require('./routes/index');
 var user = require('./routes/user');
 var login = require('./routes/login');
 var admin = require('./routes/admin');
-var angularJS = require('./routes/angular');
+var angularCtrl = require('./routes/angularCtrl');
 
 var http = require('http');
 var path = require('path');
@@ -62,27 +62,37 @@ app.post('/user', user.processForm);
 
 app.get('/user/modificarDatos', user.changePassInterface);
 
+app.get('/user/call', user.callInterface);
+
 app.get('/admin', admin.adminInterface);
 app.post('/admin', admin.processForm);
 
-app.get('/admin/crearProyecto', admin.createProyectInterface);
+app.get('/admin/crearProyecto', admin.createProjectInterface);
 
 app.get('/admin/crearEncuestador', admin.createUserInterface);
-
-app.get('/admin/eliminarEncuestador', admin.deleteUserInterface);
 
 app.get('/admin/subirCSV', admin.uploadCSVInterface);
 
 app.get('/admin/verEncuestador', admin.readUsersInterface);
+app.get('/admin/verEncuestador/:idUser', admin.userStadisticsInterface);
 
-app.get('/angular/user', angularJS.getUsers);
-app.get('/angular/user/:idUser', angularJS.getUserData);
+app.get('/admin/verProyecto', admin.readProjectInterface);
 
-app.get('/angular/client',  angularJS.getClients);
-app.get('/angular/client/:idClient',  angularJS.getClientData);
 
-app.get('/angular/project',  angularJS.getProjects);
-app.get('/angular/project/:idProject',  angularJS.getProjectData);
+app.get('/angular/user', angularCtrl.getUsers);
+app.get('/angular/user/:idUser', angularCtrl.getUserData);
+
+app.get('/angular/client',  angularCtrl.getClients);
+app.get('/angular/client/:idClient',  angularCtrl.getClientData);
+
+app.get('/angular/project',  angularCtrl.getProjects);
+app.get('/angular/project/:idProject',  angularCtrl.getProjectData);
+
+app.get('/angular/contact', angularCtrl.getContacts);
+app.get('/angular/contact/:idContact', angularCtrl.getContactsData);
+
+//req.body.id == $_POST["id"]
+//req.query.id == $_GET["id"]
 
 // 404 error handler
 app.use(function(req, res){
