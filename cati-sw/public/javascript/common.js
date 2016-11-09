@@ -102,14 +102,15 @@ function testEqualsPass(pass1, pass2){
 
 
 function fixNumber(number){
-    if(number.substring(0, 3) != "+56"){
-        if (number.lenght != 8) {//TODO: for some reason, this if is triggered when number.length == 8
+    if(number.substring(0, 3) != "+569"){
+        /*if (number.lenght != 8) {//TODO: for some reason, this if is triggered when number.length == 8
             console.log(number.lenght != 8);
-            console.log(number.length);
+            console.log(number.lenght);
             return "+56" + number;
         } else {
             return "+569" + number;
-        }
+        }*/
+        return "+569" + number;
     }
     return number;
 }

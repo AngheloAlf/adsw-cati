@@ -103,7 +103,7 @@ exports.sendProjectById = function(req, res, id_project){
             res.redirect("/login");
         }
         else {//login user
-            res.send('{"projectData": [{"id_project": "' + rows[0].id_project + '", "name": "' + rows[0].name + '", "start_date": "' + rows[0].start_date + '", "finish_date": "' + rows[0].finish_date + '", "id_client": "' + rows[0].id_client + '", "url_survey": "' + rows[0].url_survey + '"}]}');
+            res.send('{"projectData": [{"id_project": "' + rows[0].id_project + '", "name": "' + rows[0].name + '", "start_date": "' + rows[0].start_date.split(" ")[0] + '", "finish_date": "' + rows[0].finish_date.split(" ")[0] + '", "id_client": "' + rows[0].id_client + '", "url_survey": "' + rows[0].url_survey + '"}]}');
         }
     });
 };
@@ -127,7 +127,7 @@ exports.sendAllProjects = function(req, res){
                 if(i>0){
                     response += ', ';
                 }
-                response += '{"id_project": "' + rows[i].id_project + '", "name": "' + rows[i].name + '", "start_date": "' + rows[i].start_date + '", "finish_date": "' + rows[i].finish_date + '", "id_client": "' + rows[i].id_client + '", "url_survey": "' + rows[i].url_survey + '"}';
+                response += '{"id_project": "' + rows[i].id_project + '", "name": "' + rows[i].name + '", "start_date": "' + rows[i].start_date.split(" ")[0] + '", "finish_date": "' + rows[i].finish_date.split(" ")[0] + '", "id_client": "' + rows[i].id_client + '", "url_survey": "' + rows[i].url_survey + '"}';
             }
             response += ']}';
             res.send(response);
