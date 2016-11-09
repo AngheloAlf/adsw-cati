@@ -14,7 +14,6 @@ app.controller('getContactCtrl', function ($scope, $http) {
         var numberCallID = document.getElementById("numberCall").value;
         $http.get("/angular/contact/" + numberCallID)
             .then(function(response){
-                //$scope.projectGetData = response.data.contactData;
                 var callButton = document.getElementById("callButton");
                 var contactData = response.data.contactData[0];
                 callButton.setAttribute('href', 'skype:' + fixNumber(contactData.number) + '?call');

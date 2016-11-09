@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50714
 File Encoding         : 65001
 
-Date: 2016-10-22 13:06:08
+Date: 2016-11-07 12:15:41
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -88,7 +88,7 @@ CREATE TABLE `contact` (
   PRIMARY KEY (`id_contact`),
   KEY `id_project` (`id_project`),
   CONSTRAINT `contact_ibfk_1` FOREIGN KEY (`id_project`) REFERENCES `project` (`id_project`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of contact
@@ -96,9 +96,15 @@ CREATE TABLE `contact` (
 INSERT INTO `contact` VALUES ('1', 'juan', 'ximenes', '56538253', null, '8', 'si');
 INSERT INTO `contact` VALUES ('2', 'marcelo', 'treimun', '74362822', null, '8', 'si');
 INSERT INTO `contact` VALUES ('3', 'pedro', 'hernandez', '53323857', null, '8', 'no');
-INSERT INTO `contact` VALUES ('4', 'juan', 'duarte', '76453857', null, '8', 'no');
+INSERT INTO `contact` VALUES ('4', 'juan', 'duarte', '76453857', null, '8', 'Temporalmente inactivo');
 INSERT INTO `contact` VALUES ('5', 'pablo', 'ibarra', '63535869', null, '8', 'si');
 INSERT INTO `contact` VALUES ('6', 'gabriela', 'perez', '76453987', null, '8', 'si');
+INSERT INTO `contact` VALUES ('7', 'juan', 'ximenes', '56538253', null, '9', 'si');
+INSERT INTO `contact` VALUES ('8', 'marcelo', 'treimun', '74362822', null, '9', 'si');
+INSERT INTO `contact` VALUES ('9', 'pedro', 'hernandez', '53323857', null, '9', 'no');
+INSERT INTO `contact` VALUES ('10', 'juan', 'duarte', '76453857', null, '9', 'no');
+INSERT INTO `contact` VALUES ('11', 'pablo', 'ibarra', '63535869', null, '9', 'si');
+INSERT INTO `contact` VALUES ('12', 'gabriela', 'perez', '76453987', null, '9', 'si');
 
 -- ----------------------------
 -- Table structure for project
@@ -111,16 +117,18 @@ CREATE TABLE `project` (
   `finish_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_client` int(10) unsigned NOT NULL,
   `url_survey` varchar(255) NOT NULL,
+  `deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_project`),
   KEY `id_client` (`id_client`),
   CONSTRAINT `project_ibfk_1` FOREIGN KEY (`id_client`) REFERENCES `client` (`id_client`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of project
 -- ----------------------------
-INSERT INTO `project` VALUES ('7', 'test1', '2222-02-02 00:00:00', '3333-02-20 00:00:00', '1', 'asdasd');
-INSERT INTO `project` VALUES ('8', 'asdfdsf', '2222-02-02 00:00:00', '3333-02-02 00:00:00', '1', 'asdasd');
+INSERT INTO `project` VALUES ('7', 'test1', '2222-02-02 00:00:00', '3333-02-20 00:00:00', '1', 'http://pagina.com/asd', '1');
+INSERT INTO `project` VALUES ('8', 'asdfdsf', '2222-02-02 00:00:00', '3333-02-02 00:00:00', '1', 'https://encuestas100porcientorealnofake1linkmufullhd.com', '0');
+INSERT INTO `project` VALUES ('9', 'sdasd', '2017-02-02 00:00:00', '2018-03-03 00:00:00', '2', 'http://asddasd.asdasd.asd', '0');
 
 -- ----------------------------
 -- Table structure for user
@@ -133,7 +141,7 @@ CREATE TABLE `user` (
   `pass` varchar(63) NOT NULL,
   `email` varchar(127) NOT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
@@ -141,5 +149,3 @@ CREATE TABLE `user` (
 INSERT INTO `user` VALUES ('1', 'Anghelo', '19125145-8', 'Anghelo95', 'angheloalf95@gmail.com');
 INSERT INTO `user` VALUES ('2', 'Ignacio', '19306593-7', '123', 'maill@mail.mail');
 INSERT INTO `user` VALUES ('4', 'Alf', '19125145-8', 'Clave', 'mail@mail.com');
-INSERT INTO `user` VALUES ('5', 'hola', '18275030-1', 'chao', 'a@a.c');
-INSERT INTO `user` VALUES ('7', 'ejemplo', '1-9', '123', 'a@a.a');

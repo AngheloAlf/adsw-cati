@@ -16,10 +16,8 @@
     "express-fileupload": "0.0.5",
     "express-session": "^1.14.1",
     "jade": "*",
-    "jssip": "^2.0.6",
     "mysql": "^2.11.1",
     "mysql-model": "0.0.2",
-    "underscore": "^1.8.3",
-    "voip-js": "0.0.2"
+    "underscore": "^1.8.3"
   }
 }

@@ -24,12 +24,18 @@ exports.callInterface = function(req, res){
 //user form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, false, function(req, res){
+        var User = require('../models/user.js');
+        var Contact = require('../models/contact.js');
+
         if(req.body.submitButton == "changePass"){ //Change the pass interviewer
             if(req.body.interNewPass == req.body.interNewPass2){
-                var User = require('../models/user.js');
                 User.changePass(req.session.userData.userID, req.body.interOldPass, req.body.interNewPass);
             }
         }
+        else if(req.body.submitButton == "updateContactState"){ //Update contact state
+            Contact.updateState(req.body.numberCall, req.body.newState);
+        }
+
         res.redirect('/user');
     });
 };
