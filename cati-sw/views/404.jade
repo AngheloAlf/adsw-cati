@@ -1,6 +1,7 @@
 extends layout
 
 block content
+
     body.callcenter
         .subcenter.centered
             br
@@ -9,6 +10,11 @@ block content
                 h1(style='font-size:25pt;') Page not found
             form#easter_egg5(action='..', method='post')
                 button.ui.button.huge.green(type='submit') Volver
+        div#controls
+            img#record(onclick="toggleRecording(this);",src="static/cati.png")
+            a#save(href="#")
+                img(src="static/cati.png")
+
     //body(style='background-color:gainsboro')
         div(style='text-align:center;')
             #easter_egg.panel-body(onmouseout='easter_eggColor()', onmouseover='easter_eggImage()')
