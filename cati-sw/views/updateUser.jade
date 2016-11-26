@@ -8,10 +8,10 @@ block content
         .subcenter
             br
             .ui.centered.stacked.transwhite.segment
-                h1 #{nombre} - Editar Usuario
+                h1 #{nombre} - Cambiar contraseña
                 form(action='/', method='POST')
-                    button(name='submitButton', value='log_out') Cerrar sesión
-                    a(href='/user') Volver al menú
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/user') Volver al menú
                 br
             .ui.centered.stacked.transwhite.segment
                 form(action='/user', method='POST')

@@ -36,16 +36,10 @@ exports.getProjects = function(req, res){
     });
 };
 exports.getProjectData = function(req, res){
-    index.verificateLogin(req, res, true, function(req, res) {
+    index.verificateLogin(req, res, null, function(req, res) {
         Project.sendProjectById(req, res, req.params.idProject);
     });
 };
-exports.getProjectData = function(req, res){
-    index.verificateLogin(req, res, false, function(req, res) {
-        Project.sendProjectById(req, res, req.params.idProject);
-    });
-};
-
 
 exports.getContacts = function(req, res){
     index.verificateLogin(req, res, false, function(req, res){

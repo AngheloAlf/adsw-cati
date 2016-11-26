@@ -18,7 +18,7 @@ exports.log_out = function(req, res){
 
 //Test if the user is connected and is admin or not and run the callback
 exports.verificateLogin = function(req, res, admin, callback){
-    if(req.session.userData && (req.session.userData.admin == admin)){ //If user is connected
+    if(req.session.userData && (req.session.userData.admin == admin || admin ===null)){ //If user is connected
         callback(req, res);
     }
     else{//else, redirects to the login interface

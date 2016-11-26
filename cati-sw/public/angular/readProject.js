@@ -12,10 +12,12 @@ app.controller('getProjectCtrl', function ($scope, $http) {
         );
     $scope.getSelectedProject = function(){
         var projectID = document.getElementById("readProject").value;
-        $http.get("/angular/project/" + projectID)
-            .then(function(response){
-                $scope.projectGetData = response.data.projectData;
-            }
-        );
+        $http.get("/angular/project/" + projectID).then(function(response){
+            var projectData = response.data.projectData;
+            $http.get("/angular/client/" + projectData[0].id_client).then(function(response){
+                projectData[0].id_client = response.data.clientData[0].name;
+                $scope.projectGetData = projectData;
+            });
+        });
     };
 });
