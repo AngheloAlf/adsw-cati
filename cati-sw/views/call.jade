@@ -16,14 +16,13 @@ block content
 
             div.ui.centered.stacked.transwhite.segment(ng-app='getContact', ng-controller='getContactCtrl')
                 form(action='/user', method='POST')
-                    //.ui.huge.labeled.input
-                    //    .ui.label Número:
-                    //    input.ui.input#numberInput(type='tel', ng-model='numberToCall')
-                    .ui.label Seleccione contacto
-                    select#numberCall(ng-change='putNumberToCall()', ng-model='contactsNumbers', name='numberCall', required='')
-                        option(ng-repeat="contact in contactsList" value="{{contact.id_contact}}") {{contact.first_name}} {{contact.last_name}} {{contact.number}}
-                    br
-                    br
+                    //.ui.label Seleccione contacto
+                    //select#numberCall(ng-change='putNumberToCall()', ng-model='contactsNumbers', name='numberCall', required='')
+                    //    option(ng-repeat="contact in contactsList" value="{{contact.id_contact}}") {{contact.first_name}} {{contact.last_name}} {{contact.number}}
+
+                    //br
+                    //br
+                    input#numberCall(name='numberCall', required='', hidden='')
                     br
                     a.ui.huge.teal.button#callButton(href='skype:+56?call') Llamar a
                     br
@@ -37,6 +36,13 @@ block content
                     br
                     br
                     button.ui.huge.teal.button(name='submitButton', value='updateContactState') Actualizar estado del contacto
+                    br
+                    br
+                    br
+                    a.ui.huge.teal.button#surveyLink(target="_blank") Abrir encuesta
+
+
+            div#survey(style='text-align:center;')
 
 
     script(src='/angular/call.js')

@@ -115,6 +115,10 @@ function fixNumber(number){
     return number;
 }
 
+function capitalizeFirstLetter(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 /*
 function validateCreateUser(){
     var pass1 = document.getElementById("interPass").value;
