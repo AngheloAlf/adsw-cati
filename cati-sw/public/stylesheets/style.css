@@ -19,6 +19,7 @@ a {
   background-image: url(../static/ccblur.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .transwhite{
   background:rgba(255,255,255,0.5)!important;

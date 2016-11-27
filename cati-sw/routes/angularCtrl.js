@@ -45,12 +45,12 @@ exports.getProjectData = function(req, res){
 };
 
 exports.getContacts = function(req, res){
-    index.verificateLogin(req, res, false, function(req, res){
+    index.verificateLogin(req, res, null, function(req, res){
         Contact.sendAllContacts(req, res);
     });
 };
 exports.getContactsData = function(req, res){
-    index.verificateLogin(req, res, false, function(req, res){
+    index.verificateLogin(req, res, null, function(req, res){
         Contact.sendContactById(req, res, req.params.idContact);
     });
 };

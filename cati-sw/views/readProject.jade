@@ -37,7 +37,6 @@ block content
 
                 br
                 table.ui.table
-                    //TODO: get client name instead of their id
                     tr
                         th ID proyecto
                         th Nombre del proyecto
@@ -52,5 +51,35 @@ block content
                         td {{ project.finish_date }}
                         td {{ project.id_client }}
                         td {{ project.url_survey }}
+
                 br
+                h4 Estado de contactos:
+                table.ui.table
+                    tr
+                        th Nombre del contacto
+                        th Numero
+                        th Estado
+                    tr(ng-repeat="contact in contactsData")
+                        td {{ contact.first_name }} {{ contact.first_last }}
+                        td {{ contact.number }}
+                        td {{ contact.state }}
+
+                br
+                p(id="downloadError", style="color:red;")
+                table.ui.table
+                    //tr
+                    //    th Nombre
+                    //    th Nombre del encuestador
+                    //    th Rut del encuestador
+                    //    th e-Mail del encuestador
+                    tr(ng-repeat="audio in audiosList")
+                        td {{ audio }}
+                        //td {{ user.name }}
+                        //td {{ user.rut }}
+                        //td {{ user.email }}
+                br
+
+        br
+        br
+
     script(src='/angular/readProject.js')
