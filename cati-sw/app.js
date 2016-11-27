@@ -78,6 +78,8 @@ app.get('/admin/verEncuestador/:idUser', admin.userStadisticsInterface);
 
 app.get('/admin/verProyecto', admin.readProjectInterface);
 
+app.get('/admin/agregarCliente', admin.createClientInterface);
+
 
 app.get('/angular/user', angularCtrl.getUsers);
 app.get('/angular/user/:idUser', angularCtrl.getUserData);

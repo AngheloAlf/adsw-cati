@@ -17,12 +17,12 @@ exports.createClient = function(name, email){
         if(err){
             throw err;
         }
-        if(rows[0] === undefined){ //This client does not exist in the clients db
+        if(rows.length == 0){ //This client does not exist in the clients db
             var client = new Client({name: name, email: email});
             client.save();
         }
         else{
-            //TODO: show error - rut exists in the db
+            //TODO: show error - client exists in the db
         }
     });
 };

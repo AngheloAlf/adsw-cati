@@ -47,6 +47,12 @@ exports.readProjectInterface = function(req, res){
     })
 };
 
+exports.createClientInterface = function(req, res){
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('createClient', { title: 'CATI - Admin - Agregar cliente', nombre: req.session.userData.userName});
+    })
+};
+
 //admin form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
@@ -56,6 +62,7 @@ exports.processForm = function(req, res){
         var Admin = require('../models/admin.js');
         var Project = require('../models/project.js');
         var Contact = require('../models/contact.js');
+        var Client = require('../models/client.js');
         var parse = require('csv-parse/lib/sync');
 
         if(req.body.submitButton == "createInter"){ //Create interviewer
@@ -81,6 +88,9 @@ exports.processForm = function(req, res){
         }
         else if(req.body.submitButton == "deleteProject"){
             Admin.deleteProject(req.body.readProject, req.session.userData.userID, req.body.projectDeletePass);
+        }
+        else if(req.body.submitButton == "createClient"){
+            Client.createClient(req.body.clientName, req.body.clientMail);
         }
 
         if(redirectToAdmin){
