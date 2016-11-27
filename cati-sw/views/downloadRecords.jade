@@ -1,0 +1,41 @@
+//
+   Created by Anghelo on 26-11-2016.
+
+extends layout
+
+block content
+    body.callcenter
+        div.subcenter
+            br
+            div.ui.stacked.centered.transwhite.segment
+                h1 Admin #{nombre} - Descarga de grabaciones
+                form(action='/', method='POST')
+                    button.ui.secondary.button(name='submitButton', value='log_out') Cerrar sesión
+                    a.ui.primary.button(href='/admin') Volver al menú
+                br
+
+
+            div.ui.stacked.centered.transgray.segment(ng-app='getProject', ng-controller='getProjectCtrl')
+                div.ui.label Seleccione projecto
+                select#downloadProject(name='downloadProject', required='')
+                    option(ng-repeat="project in projectsList" value="{{project.id_project}}") {{project.name}}
+                br
+                br
+                .ui.teal.submit.button(ng-click='getRecordsFromProject()') Seleccionar proyecto
+                br
+                br
+                p(id="downloadError", style="color:red;")
+                br
+                table.ui.table
+                    //tr
+                    //    th Nombre
+                    //    th Nombre del encuestador
+                    //    th Rut del encuestador
+                    //    th e-Mail del encuestador
+                    tr(ng-repeat="audio in audiosList")
+                        td {{ audio }}
+                        //td {{ user.name }}
+                        //td {{ user.rut }}
+                        //td {{ user.email }}
+
+    script(src='/angular/downloadRecords.js')

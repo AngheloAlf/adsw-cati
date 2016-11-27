@@ -53,6 +53,12 @@ exports.createClientInterface = function(req, res){
     })
 };
 
+exports.donwloadRecordsInterface = function(req, res){
+    index.verificateLogin(req, res, true, function(req, res){
+        res.render('downloadRecords', { title: 'CATI - Admin - Descargar grabaciones', nombre: req.session.userData.userName});
+    })
+};
+
 //admin form handler
 exports.processForm = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){
