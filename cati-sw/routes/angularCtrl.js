@@ -8,6 +8,7 @@ var Client = require('../models/client.js');
 var Project = require('../models/project.js');
 var Contact = require('../models/contact.js');
 var fs = require("fs");
+var path = require("path");
 
 
 exports.getUsers = function(req, res){
@@ -55,15 +56,15 @@ exports.getContactsData = function(req, res){
 };
 
 exports.getRecordsData = function(req, res){
-    //index.verificateLogin(req, res, true, function(req, res) {
-        var audioFolder = 'C:\\Users\\Anghelo\\WebstormProjects\\adsw-cati\\cati-sw\\public\\audioRecords\\project' + req.params.idProject;
+    index.verificateLogin(req, res, true, function(req, res){
+        var audioFolder = path.resolve(".", "public", "audioRecords", "project" + req.params.idProject);
         fs.readdir(audioFolder, function (err, files) {
-            if (err) {
+            if(err){
                 res.send("undefined");
             }
-            else {
+            else{
                 res.send(JSON.stringify(files));
             }
         });
-    //});
+    });
 };
