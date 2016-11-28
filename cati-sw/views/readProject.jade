@@ -67,16 +67,18 @@ block content
                 br
                 p(id="downloadError", style="color:red;")
                 table.ui.table
-                    //tr
-                    //    th Nombre
-                    //    th Nombre del encuestador
-                    //    th Rut del encuestador
-                    //    th e-Mail del encuestador
+                    tr
+                        th Nombre
+                        th Reproducir
+                        th Descarga
                     tr(ng-repeat="audio in audiosList")
-                        td {{ audio }}
-                        //td {{ user.name }}
-                        //td {{ user.rut }}
-                        //td {{ user.email }}
+                        td {{ audio.name }}
+                        td
+                            audio(controls="")
+                                source(src='{{audio.download}}' type='audio/mpeg')
+                                | Error
+                        td
+                            a(href='{{ audio.download }}', download='') Descargar
                 br
 
         br

@@ -68,3 +68,8 @@ exports.getRecordsData = function(req, res){
         });
     });
 };
+exports.downloadFile = function(req, res){
+    index.verificateLogin(req, res, true, function(req, res){
+        res.sendfile(path.resolve(".", "public", "audioRecords", "project" + req.params.idProject, req.params.fileName));
+    });
+};

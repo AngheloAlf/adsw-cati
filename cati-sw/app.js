@@ -80,7 +80,7 @@ app.get('/admin/verProyecto', admin.readProjectInterface);
 
 app.get('/admin/agregarCliente', admin.createClientInterface);
 
-app.get('/admin/descargarGrabaciones', admin.donwloadRecordsInterface);
+//app.get('/admin/descargarGrabaciones', admin.donwloadRecordsInterface);
 
 
 app.get('/angular/user', angularCtrl.getUsers);
@@ -96,6 +96,7 @@ app.get('/angular/contact', angularCtrl.getContacts);
 app.get('/angular/contact/:idContact', angularCtrl.getContactsData);
 
 app.get('/angular/records/:idProject', angularCtrl.getRecordsData);
+app.get('/angular/records/:idProject/:fileName', angularCtrl.downloadFile);
 
 //req.body.id == $_POST["id"]
 //req.query.id == $_GET["id"]

@@ -28,7 +28,17 @@ app.controller('getProjectCtrl', function ($scope, $http) {
             }
             else{
                 downloadError.innerHTML = "";
-                $scope.audiosList = projectData;
+                var audiosArray = [];
+                var audiosDict = {};
+                console.log(audiosArray);
+                projectData.forEach(function(item, index){
+                    audiosDict.name = item;
+                    audiosDict.download = "/angular/records/" + projectID + "/" + item;
+                    audiosArray.push(audiosDict);
+                    audiosDict = {};
+                });
+                console.log(audiosArray);
+                $scope.audiosList = audiosArray;
             }
         });
         $http.get("/angular/contact/").then(function(response){
