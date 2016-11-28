@@ -54,6 +54,13 @@ exports.getContactsData = function(req, res){
         Contact.sendContactById(req, res, req.params.idContact);
     });
 };
+/*
+exports.updateContactState = function(req, res){
+    index.verificateLogin(req, res, null, function(req, res){
+        Contact.updateState(req.params.idContact, req.params.newState);
+    });
+};
+*/
 
 exports.getRecordsData = function(req, res){
     index.verificateLogin(req, res, true, function(req, res){

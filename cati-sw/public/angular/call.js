@@ -5,12 +5,12 @@
 
 var app = angular.module('getContact', []);
 app.controller('getContactCtrl', function ($scope, $http) {
+    var form = {numberCall: 0, newState: "Activo", submitButton: "updateContactState"};
     $http.get("/angular/contact").then(function (response){
         //$scope.contactsList = response.data.contactsData;
         var contacts = response.data.contactsData;
         var id, name, number, project, call = false;
         for(var i = 0; i < contacts.length; i++){
-            console.log(contacts[i].state);
             switch(contacts[i].state.toLowerCase()){
                 case "si":
                 case "permanentemente inactivo":
@@ -19,6 +19,7 @@ app.controller('getContactCtrl', function ($scope, $http) {
                     break;
                 case "activo":
                 case "no":
+                    $scope.projectId = contacts[i].id_project;
                     id = contacts[i].id_contact;
                     name = capitalizeFirstLetter(contacts[i].first_name) + " " + capitalizeFirstLetter(contacts[i].last_name);
                     number = fixNumber(contacts[i].number);
@@ -48,14 +49,13 @@ app.controller('getContactCtrl', function ($scope, $http) {
             callButton.innerHTML = 'No se ha encontrado a nadie disponible para llamar.';
         }
     });
-    /*$scope.putNumberToCall = function(){
-        var numberCallID = document.getElementById("numberCall").value;
-        $http.get("/angular/contact/" + numberCallID)
-            .then(function(response){
-                var callButton = document.getElementById("callButton");
-                var contactData = response.data.contactData[0];
-                callButton.setAttribute('href', 'skype:' + fixNumber(contactData.number) + '?call');
-                callButton.innerHTML = 'Llamar a ' + contactData.first_name + " " + contactData.last_name;
-            });
-    };*/
+    $scope.updateState = function(){
+        $scope.form.numberCall = document.getElementById("numberCall").value;
+        $scope.form.submitButton = document.getElementById("submitButton").value;
+        $http.post("/user", JSON.stringify($scope.form)).success(function(){
+            alert("Estado actualizado satisfactoriamente.");
+        }).error(function(){
+            alert("Ha ocurrido un error al actualizar el estado.");
+        });
+    };
 });

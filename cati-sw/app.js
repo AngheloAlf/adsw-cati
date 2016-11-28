@@ -94,6 +94,7 @@ app.get('/angular/project/:idProject',  angularCtrl.getProjectData);
 
 app.get('/angular/contact', angularCtrl.getContacts);
 app.get('/angular/contact/:idContact', angularCtrl.getContactsData);
+//app.get('/angular/contact/:idContact/:newState', angularCtrl.updateContactState);
 
 app.get('/angular/records/:idProject', angularCtrl.getRecordsData);
 app.get('/angular/records/:idProject/:fileName', angularCtrl.downloadFile);

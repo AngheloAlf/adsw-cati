@@ -31,7 +31,7 @@ app.controller('getProjectCtrl', function ($scope, $http) {
                 var audiosArray = [];
                 var audiosDict = {};
                 console.log(audiosArray);
-                projectData.forEach(function(item, index){
+                projectData.forEach(function(item){
                     audiosDict.name = item;
                     audiosDict.download = "/angular/records/" + projectID + "/" + item;
                     audiosArray.push(audiosDict);

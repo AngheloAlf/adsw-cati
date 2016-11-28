@@ -1,5 +1,7 @@
 
 var index = require('../routes/index');
+var path = require("path");
+var fs = require("fs");
 
 //user interface
 exports.userInterface = function(req, res){
@@ -34,6 +36,17 @@ exports.processForm = function(req, res){
         }
         else if(req.body.submitButton == "updateContactState"){ //Update contact state
             Contact.updateState(req.body.numberCall, req.body.newState);
+        }
+        else if(req.body.submitButton == "uploadRecording"){
+            var uploadRecord = req.files.uploadRecord;
+            uploadRecord.mv(path.resolve(".", "public", "audioRecords", "project" + req.body.uploadProject, uploadRecord.name), function(err){
+                if(err){
+                    res.status(500).send(err);
+                }
+                else{
+                    //file uploaded succecfully
+                }
+            });
         }
 
         res.redirect('/user');

@@ -14,31 +14,34 @@ block content
                     a.ui.primary.button(href='/user') Volver al menú
 
             div.ui.centered.stacked.transwhite.segment(ng-app='getContact', ng-controller='getContactCtrl')
-                form(action='/user', method='POST')
-                    //.ui.label Seleccione contacto
-                    //select#numberCall(ng-change='putNumberToCall()', ng-model='contactsNumbers', name='numberCall', required='')
-                    //    option(ng-repeat="contact in contactsList" value="{{contact.id_contact}}") {{contact.first_name}} {{contact.last_name}} {{contact.number}}
-
-                    //br
-                    //br
-                    input#numberCall(name='numberCall', required='', hidden='')
-                    br
-                    a.ui.huge.teal.button#callButton(href='skype:+56?call') Llamar a
+                a.ui.huge.teal.button#callButton(href='skype:+56?call') Llamar a
+                br
+                br
+                br
+                a.ui.huge.teal.button#surveyLink(target="_blank") Abrir encuesta
+                form(ng-submit="updateState()")
+                    input#numberCall(name='numberCall', required='', hidden='', ng-model="form.numberCall")
                     br
                     br
                     br
                     .ui.label Modificar estado
-                    select#newState(name='newState', required='')
+                    select#newState(name='newState', required='', ng-model="form.newState")
                         option(value="Permanentemente inactivo") Permanentemente inactivo
                         option(value="Temporalmente inactivo") Temporalmente inactivo
                         option(value="Activo") Activo
                     br
                     br
-                    button.ui.huge.teal.button(name='submitButton', value='updateContactState') Actualizar estado del contacto
-                    br
-                    br
-                    br
-                    a.ui.huge.teal.button#surveyLink(target="_blank") Abrir encuesta
+                    button.ui.huge.teal.button#submitButton(name='submitButton', value='updateContactState', ng-model="form.submitButton") Actualizar estado del contacto
+                br
+                br
+                br
+                form(action='/user', method='POST', enctype="multipart/form-data")
+                     input#uploadProject(name='uploadProject', required='' value='{{projectId}}', hidden='')
+                     div.ui.label Seleccionar grabación
+                     input#uploadRecord(type='file', name='uploadRecord', required='')
+                     br
+                     br
+                     button.ui.huge.teal.button(name='submitButton', value='uploadRecording') Subir grabación
 
 
             div#survey(style='text-align:center;')
