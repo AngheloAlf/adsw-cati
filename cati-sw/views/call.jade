@@ -4,6 +4,7 @@
 extends layout
 
 block content
+    script(src="/javascript/grabar.js")
     body.callcenter
         .subcenter
             br
@@ -35,6 +36,7 @@ block content
                 br
                 br
                 br
+                button.ui.huge.green.button(onclick=mousePressed()) Grabar/Detener
                 form(action='/user', method='POST', enctype="multipart/form-data")
                      input#uploadProject(name='uploadProject', required='' value='{{projectId}}', hidden='')
                      div.ui.label Seleccionar grabación

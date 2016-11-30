@@ -19,6 +19,7 @@
     "jade": "*",
     "mysql": "^2.11.1",
     "mysql-model": "0.0.2",
+    "recordrtc": "^5.4.0",
     "underscore": "^1.8.3"
   }
 }
