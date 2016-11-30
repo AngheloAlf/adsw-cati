@@ -42,7 +42,7 @@ function mousePressed() {
 
     else if (state === 1) {
         recorder.stop(); // stop recorder, and send the result to soundFile
-        background(0,255,0);
+        //background(0,255,0);
         console.log("STOPPED  AND SAVED... CLICK TO PLAY");
         saveSound(soundFile, 'mySound.wav'); // save file
         //text('Recording stopped. Click to play & save', 20, 20);
