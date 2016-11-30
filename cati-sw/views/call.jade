@@ -35,8 +35,11 @@ block content
                     button.ui.huge.teal.button#submitButton(name='submitButton', value='updateContactState', ng-model="form.submitButton") Actualizar estado del contacto
                 br
                 br
+                button.ui.huge.green.button(onclick="mousePressButton()") Grabar/Detener
                 br
-                button.ui.huge.green.button(onclick=mousePressed()) Grabar/Detener
+                p#recordingMessage(style="color:blue;") Cargando
+                br
+                br
                 form(action='/user', method='POST', enctype="multipart/form-data")
                      input#uploadProject(name='uploadProject', required='' value='{{projectId}}', hidden='')
                      div.ui.label Seleccionar grabación

@@ -25,11 +25,12 @@ function setup() {
     // create an empty sound file that we will use to playback the recording
     soundFile = new p5.SoundFile();
     console.log("SETUP OK");
+    document.getElementById("recordingMessage").innerHTML = "Listo para empezar una grabación";
 }
 
-function mousePressed() {
+function mousePressButton() {
     // use the '.enabled' boolean to make sure user enabled the mic (otherwise we'd record silence)
-    if (state === 0 && mic.enabled) {
+    if(state === 0 && mic.enabled){
 
         // Tell recorder to record to a p5.SoundFile which we will use for playback
         recorder.record(soundFile);
@@ -38,18 +39,20 @@ function mousePressed() {
         //text('Recording now! Click to stop.', 20, 20);
         console.log("RECORDING");
         state++;
+        document.getElementById("recordingMessage").innerHTML = "Grabando";
     }
 
-    else if (state === 1) {
+    else if(state === 1){
         recorder.stop(); // stop recorder, and send the result to soundFile
         //background(0,255,0);
         console.log("STOPPED  AND SAVED... CLICK TO PLAY");
         saveSound(soundFile, 'mySound.wav'); // save file
         //text('Recording stopped. Click to play & save', 20, 20);
         state++;
+        document.getElementById("recordingMessage").innerHTML = "Grabacion finalizada";
     }
 
-    else if (state === 2) {
+    else if(state === 2){
         //soundFile.play(); // play the result!
         console.log("SAVED ... CLICK TO RECORD");
 
