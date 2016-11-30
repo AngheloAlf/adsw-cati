@@ -127,6 +127,25 @@ function validateCreateUser(){
 }
 */
 
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+};
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+};
+
+function getNowDate(){
+    var nowDate = (new Date()).toJSON();
+    nowDate = nowDate.split("T");
+    nowDate[0] = nowDate[0].replace(/\-/g, "/");
+    nowDate[1] = nowDate[1].split(".")[0].replace(/\-/g, ":");
+    return nowDate[0] + " " + nowDate[1];
+}
+
 (function(exports){
     exports.validateRut = validateRut;
     exports.validatePass = validatePass;

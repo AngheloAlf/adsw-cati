@@ -60,7 +60,7 @@ block content
                         th Numero
                         th Estado
                     tr(ng-repeat="contact in contactsData")
-                        td {{ contact.first_name }} {{ contact.first_last }}
+                        td {{ contact.first_name }} {{ contact.last_name }}
                         td {{ contact.number }}
                         td {{ contact.state }}
 
@@ -75,7 +75,7 @@ block content
                         td {{ audio.name }}
                         td
                             audio(controls="")
-                                source(src='{{audio.download}}' type='audio/mpeg')
+                                source(src='{{audio.download}}' type='audio/wav')
                                 | Error
                         td
                             a(href='{{ audio.download }}', download='') Descargar

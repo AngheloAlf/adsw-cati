@@ -16,10 +16,14 @@ block content
 
             div.ui.centered.stacked.transwhite.segment(ng-app='getContact', ng-controller='getContactCtrl')
                 a.ui.huge.teal.button#callButton(href='skype:+56?call') Llamar a
+                input#hiddenNumber(hidden="")
                 br
                 br
                 br
                 a.ui.huge.teal.button#surveyLink(target="_blank") Abrir encuesta
+                br
+                br
+                button.ui.huge.green.button#recordingMessage(onclick="mousePressButton()") Preparando grabador
                 form(ng-submit="updateState()")
                     input#numberCall(name='numberCall', required='', hidden='', ng-model="form.numberCall")
                     br
@@ -35,9 +39,7 @@ block content
                     button.ui.huge.teal.button#submitButton(name='submitButton', value='updateContactState', ng-model="form.submitButton") Actualizar estado del contacto
                 br
                 br
-                button.ui.huge.green.button(onclick="mousePressButton()") Grabar/Detener
-                br
-                p#recordingMessage(style="color:blue;") Cargando
+                //p#recordingMessage(style="color:blue;") Cargando
                 br
                 br
                 form(action='/user', method='POST', enctype="multipart/form-data")

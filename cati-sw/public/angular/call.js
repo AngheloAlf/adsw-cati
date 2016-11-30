@@ -35,9 +35,11 @@ app.controller('getContactCtrl', function ($scope, $http) {
         var numberCall = document.getElementById("numberCall");
         var survey = document.getElementById("survey");
         var surveyLink = document.getElementById("surveyLink");
+        var hiddenNumber = document.getElementById("hiddenNumber");
         if(call){
             $http.get("/angular/project/" + project).then(function (response){
                 callButton.setAttribute('href', 'skype:' + number + '?call');
+                hiddenNumber.value = number;
                 numberCall.value = id;
                 callButton.innerHTML = 'Llamar a ' + name;
                 survey.innerHTML = '<iframe src="' + response.data.projectData[0].url_survey + '" width="900" height="400"></iframe>';
