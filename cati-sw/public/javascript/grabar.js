@@ -33,7 +33,7 @@ function mousePressButton(){
     var hiddenNumber = document.getElementById("hiddenNumber").value;
     var defaultCanvas0;
     if(defaultCanvas0 = document.getElementById("defaultCanvas0")){
-        defaultCanvas0.remove();
+        //defaultCanvas0.remove();
     }
     if(!mic.enabled){
         recordingMessage.innerHTML = "Ha ocurrido un problema";

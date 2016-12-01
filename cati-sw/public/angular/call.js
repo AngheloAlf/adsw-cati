@@ -31,6 +31,27 @@ app.controller('getContactCtrl', function ($scope, $http) {
                 break;
             }
         }
+        if(!call){
+            for(i = 0; i < contacts.length; i++){
+                switch (contacts[i].state.toLowerCase()) {
+                    case "si":
+                    case "permanentemente inactivo":
+                        continue;
+                        break;
+                    case "temporalmente inactivo":
+                        $scope.projectId = contacts[i].id_project;
+                        id = contacts[i].id_contact;
+                        name = capitalizeFirstLetter(contacts[i].first_name) + " " + capitalizeFirstLetter(contacts[i].last_name);
+                        number = fixNumber(contacts[i].number);
+                        project = contacts[i].id_project;
+                        call = true;
+                        break;
+                }
+                if(call){
+                    break;
+                }
+            }
+        }
         var callButton = document.getElementById("callButton");
         var numberCall = document.getElementById("numberCall");
         var survey = document.getElementById("survey");
@@ -46,7 +67,7 @@ app.controller('getContactCtrl', function ($scope, $http) {
                 surveyLink.setAttribute('href', response.data.projectData[0].url_survey);
             });
         }
-        else {
+        else{
             callButton.removeAttribute('href');
             callButton.innerHTML = 'No se ha encontrado a nadie disponible para llamar.';
         }

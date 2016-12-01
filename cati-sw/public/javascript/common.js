@@ -126,7 +126,7 @@ function validateCreateUser(){
     return testEqualsPass(pass1, pass2);
 }
 */
-
+/*
 Element.prototype.remove = function() {
     this.parentElement.removeChild(this);
 };
@@ -137,7 +137,7 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
         }
     }
 };
-
+*/
 function getNowDate(){
     var nowDate = (new Date()).toJSON();
     nowDate = nowDate.split("T");

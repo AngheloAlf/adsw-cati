@@ -41,7 +41,16 @@ exports.processForm = function(req, res){
             var uploadRecord = req.files.uploadRecord;
             uploadRecord.mv(path.resolve(".", "public", "audioRecords", "project" + req.body.uploadProject, uploadRecord.name), function(err){
                 if(err){
-                    res.status(500).send(err);
+                    fs.mkdirSync(path.resolve(".", "public", "audioRecords", "project" + req.body.uploadProject));
+                    //res.status(500).send(err);
+                    uploadRecord.mv(path.resolve(".", "public", "audioRecords", "project" + req.body.uploadProject, uploadRecord.name), function(err){
+                        if(err){
+                            //res.status(500).send(err);
+                        }
+                        else{
+                            //file uploaded succecfully
+                        }
+                    });
                 }
                 else{
                     //file uploaded succecfully

@@ -79,6 +79,10 @@ exports.createNewProject = function(req){
     var client = req.body.projectClient;
     var url = req.body.projectUrl;
 
+    newProject(name, startDate, endDate, client, url);
+    return true;
+
+    //TODO: debug
     if(common.testAscii(name) && common.testDate(startDate) && common.testDate(endDate) && common.testIsANumber(client) && common.testUrl(url)){
         newProject(name, startDate, endDate, client, url);
         return true;
